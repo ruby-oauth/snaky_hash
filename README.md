@@ -3,7 +3,7 @@
 This gem is used by the `oauth` and `oauth2` gems, and others, to normalize hash keys and lookups,
 and provide a nice psuedo-object interface.
 
-It has its roots in the `Rash`, which was a special `Mash`, made popular by the `hashie` gem.
+It has its roots in the `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem.
 
 `SnakyHash::Snake` does inherit from `Hashie::Mash` and adds some additional behaviors.
 
