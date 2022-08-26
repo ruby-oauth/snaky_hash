@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
-    "LICENSE",
+    "LICENSE.txt",
     "README.md",
     "SECURITY.md",
   ]
