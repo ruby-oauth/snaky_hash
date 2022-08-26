@@ -12,9 +12,16 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [Unreleased]
 
+## [1.0.1] - 2022-08-26
+### Added
+- Missing LICENSE.txt file to release
+### Removed
+- Accidentally added bundler dependency (vestige of transpec process) is now removed
+
 ## [1.0.0] - 2022-08-26
 ### Added
 - Initial release
 
-[Unreleased]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v1.0.0...main
+[Unreleased]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v1.0.1...main
+[1.0.1]: https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v1.0.1
 [1.0.0]: https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v1.0.0
