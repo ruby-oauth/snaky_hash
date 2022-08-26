@@ -1,0 +1,23 @@
+inherit_gem:
+  rubocop-lts: rubocop-lts.yml
+
+require:
+  - 'rubocop-md'
+  - 'rubocop-performance'
+  - 'rubocop-rake'
+  - 'rubocop-rspec'
+  - 'rubocop-thread_safety'
+
+AllCops:
+  DisplayCopNames: true # Display the name of the failing cops
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Max: 120
