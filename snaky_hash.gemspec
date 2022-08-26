@@ -3,6 +3,7 @@
 require_relative "lib/snaky_hash/version"
 
 Gem::Specification.new do |spec|
+  spec.add_dependency "bundler", "1.17.3"
   spec.add_dependency "hashie"
   spec.add_dependency "version_gem", "~> 1.1"
 
