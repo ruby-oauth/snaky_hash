@@ -139,4 +139,24 @@ RSpec.describe SnakyHash::Snake do
     expect(subject.key?(:"4")).to be false
     expect(subject.key?(4)).to be true
   end
+
+  it "returns a SnakyHash::Snake from a snake + snake merge" do
+    a = SnakyHash::Snake.new("asd" => "asd")
+    b = SnakyHash::Snake.new(:zxc => "zxc")
+    expect(a.merge(b)).to be_a(SnakyHash::Snake)
+  end
+
+  it "returns a SnakyHash::Snake from a snake + hash merge" do
+    a = SnakyHash::Snake.new("asd" => "asd")
+    b = Hash.new(:zxc => "zxc")
+    expect(a.merge(b)).to be_a(SnakyHash::Snake)
+  end
+
+  it "returns a Hash from a hash + snake merge" do
+    a = SnakyHash::Snake.new("asd" => "asd")
+    b = Hash.new(:zxc => "zxc")
+    res = b.merge(a)
+    expect(res).not_to be_a(SnakyHash::Snake)
+    expect(res).to be_a(Hash)
+  end
 end
