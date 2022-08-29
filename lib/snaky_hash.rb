@@ -6,7 +6,10 @@ require "version_gem"
 
 require_relative "snaky_hash/version"
 require_relative "snaky_hash/snake"
+require_relative "snaky_hash/string_keyed"
+require_relative "snaky_hash/symbol_keyed"
 
+# This is the namespace for this gem
 module SnakyHash
 end
 

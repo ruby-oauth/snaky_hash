@@ -35,6 +35,8 @@ GEM
       rspec-core (~> 3.11.0)
       rspec-expectations (~> 3.11.0)
       rspec-mocks (~> 3.11.0)
+    rspec-block_is_expected (1.0.2)
+      rspec-core
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
     rspec-expectations (3.11.0)
@@ -97,6 +99,7 @@ DEPENDENCIES
   rake (~> 13.0)
   redcarpet
   rspec (~> 3.0)
+  rspec-block_is_expected
   rubocop-lts (~> 8.0)
   rubocop-md
   rubocop-performance

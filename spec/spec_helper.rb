@@ -5,6 +5,7 @@ ENV["RACK_ENV"] = "test"
 
 # Third Party Libraries
 require "rspec"
+require "rspec/block_is_expected"
 
 DEBUG = ENV["DEBUG"] == "true"
 
@@ -57,3 +58,6 @@ require "snaky_hash"
 
 # RSpec Configs
 require "config/rspec/rspec_core"
+
+require "shared_contexts/base_hash"
+require "shared_examples/a_snaked_hash"
