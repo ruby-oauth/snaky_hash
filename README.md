@@ -35,7 +35,7 @@ snake['very_fine_hat'] # => 'Feathers'
 
 Note above that you can access the values via the string, or symbol.
 The `key_type` determines how the key is actually stored, but the hash acts as "indifferent".
-Note also that keys that do not respond to `to_sym`, because they don't have a natural conversion to a Symbol,
+Note also that keys which do not respond to `to_sym`, because they don't have a natural conversion to a Symbol,
 are left as-is.
 
 ### Stranger Things

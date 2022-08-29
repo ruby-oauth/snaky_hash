@@ -12,6 +12,18 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [Unreleased]
 
+## [2.0.0] - 2022-08-29
+### Changed
+- **BREAKING**: `SnakeHash::Snake` is now a mixin, now with support for symbol or string keys
+```ruby
+class MySnakedHash < Hashie::Mash
+  include SnakyHash::Snake.new(key_type: :string) # or :symbol
+end
+```
+### Added
+- `SnakyHash::StringKeyed`: a Hashie::Mash class with snake-cased String keys
+- `SnakyHash::SymbolKeyed`: a Hashie::Mash class with snake-cased Symbol keys
+
 ## [1.0.1] - 2022-08-26
 ### Added
 - Missing LICENSE.txt file to release
