@@ -5,7 +5,7 @@ and provide a nice psuedo-object interface.
 
 It has its roots in the `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem.
 
-`SnakyHash::Snake` does inherit from `Hashie::Mash` and adds some additional behaviors.
+Classes that include `SnakyHash::Snake` should inherit from `Hashie::Mash`.
 
 ## Installation
 
@@ -19,7 +19,45 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-For now, please see specs
+```ruby
+class MySnakedHash < Hashie::Mash
+  include SnakyHash::Snake.new(key_type: :string) # or :symbol
+end
+
+snake = MySnakedHash.new(a: 'a', 'b' => 'b', 2 => 2, 'VeryFineHat' => 'Feathers')
+snake.a # => 'a'
+snake.b # => 'b'
+snake[2] # 2
+snake.very_fine_hat # => 'Feathers'
+snake[:very_fine_hat] # => 'Feathers'
+snake['very_fine_hat'] # => 'Feathers'
+```
+
+Note above that you can access the values via the string, or symbol.
+The `key_type` determines how the key is actually stored, but the hash acts as "indifferent".
+Note also that keys that do not respond to `to_sym`, because they don't have a natural conversion to a Symbol,
+are left as-is.
+
+### Stranger Things
+
+I don't recommend using these features... but they exist (for now).
+You can still access the original un-snaked camel keys.
+And through them you can even use un-snaked camel methods.
+
+```ruby
+snake.key?('VeryFineHat') # => true
+snake['VeryFineHat'] # => 'Feathers'
+snake.VeryFineHat # => 'Feathers', PLEASE don't do this!!!
+snake['VeryFineHat'] = 'pop' # Please don't do this... you'll get a warning, and it works (for now), but no guarantees.
+# WARN -- : You are setting a key that conflicts with a built-in method MySnakedHash#VeryFineHat defined in MySnakedHash. This can cause unexpected behavior when accessing the key as a property. You can still access the key via the #[] method.
+# => "pop"
+snake.very_fine_hat = 'pop' # => 'pop', do this instead!!!
+snake.very_fine_hat # => 'pop'
+snake[:very_fine_hat] = 'moose' # => 'moose', or do this instead!!!
+snake.very_fine_hat # => 'moose'
+snake['very_fine_hat'] = 'cheese' # => 'cheese', or do this instead!!!
+snake.very_fine_hat # => 'cheese'
+```
 
 ## Development
 
