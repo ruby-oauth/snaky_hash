@@ -10,7 +10,15 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ### Fixed
 ### Removed
 
-## [Unreleased]
+## [2.0.1] - 2022-09-23 ([tag][2.0.1t])
+### Added
+- Certificate for signing gem releases (@pboling)
+- Gemspec metadata (@pboling)
+    - funding_uri
+    - mailing_list_uri
+- Checksums for released gems (@pboling)
+### Changed
+- Gem releases are now cryptographically signed (@pboling)
 
 ## [2.0.0] - 2022-08-29 ([tag][2.0.0t])
 ### Changed
