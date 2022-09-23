@@ -10,9 +10,7 @@ tests. Once you're happy with it send a pull request and post a message to the
 
 ## Contributors
 
-[![Contributors](https://contrib.rocks/image?repo=oauth-xx/oauth-ruby)][contributors]
-
-Made with [contributors-img][contrib-rocks].
+See: [https://gitlab.com/oauth-xx/oauth-tty/-/graphs/main][contributors]
 
 [comment]: <> (Following links are used by README, CONTRIBUTING, Homepage)
 
@@ -20,4 +18,3 @@ Made with [contributors-img][contrib-rocks].
 [contributors]: https://gitlab.com/oauth-xx/snaky_hash/-/graphs/main
 [mailinglist]: http://groups.google.com/group/oauth-ruby
 [source]: https://gitlab.com/oauth-xx/snaky_hash/-/tree/main
-[contrib-rocks]: https://contrib.rocks
