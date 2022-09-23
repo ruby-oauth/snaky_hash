@@ -24,13 +24,13 @@ class MySnakedHash < Hashie::Mash
   include SnakyHash::Snake.new(key_type: :string) # or :symbol
 end
 
-snake = MySnakedHash.new(a: 'a', 'b' => 'b', 2 => 2, 'VeryFineHat' => 'Feathers')
+snake = MySnakedHash.new(a: "a", "b" => "b", 2 => 2, "VeryFineHat" => "Feathers")
 snake.a # => 'a'
 snake.b # => 'b'
 snake[2] # 2
 snake.very_fine_hat # => 'Feathers'
 snake[:very_fine_hat] # => 'Feathers'
-snake['very_fine_hat'] # => 'Feathers'
+snake["very_fine_hat"] # => 'Feathers'
 ```
 
 Note above that you can access the values via the string, or symbol.
@@ -45,17 +45,17 @@ You can still access the original un-snaked camel keys.
 And through them you can even use un-snaked camel methods.
 
 ```ruby
-snake.key?('VeryFineHat') # => true
-snake['VeryFineHat'] # => 'Feathers'
+snake.key?("VeryFineHat") # => true
+snake["VeryFineHat"] # => 'Feathers'
 snake.VeryFineHat # => 'Feathers', PLEASE don't do this!!!
-snake['VeryFineHat'] = 'pop' # Please don't do this... you'll get a warning, and it works (for now), but no guarantees.
+snake["VeryFineHat"] = "pop" # Please don't do this... you'll get a warning, and it works (for now), but no guarantees.
 # WARN -- : You are setting a key that conflicts with a built-in method MySnakedHash#VeryFineHat defined in MySnakedHash. This can cause unexpected behavior when accessing the key as a property. You can still access the key via the #[] method.
 # => "pop"
-snake.very_fine_hat = 'pop' # => 'pop', do this instead!!!
+snake.very_fine_hat = "pop" # => 'pop', do this instead!!!
 snake.very_fine_hat # => 'pop'
-snake[:very_fine_hat] = 'moose' # => 'moose', or do this instead!!!
+snake[:very_fine_hat] = "moose" # => 'moose', or do this instead!!!
 snake.very_fine_hat # => 'moose'
-snake['very_fine_hat'] = 'cheese' # => 'cheese', or do this instead!!!
+snake["very_fine_hat"] = "cheese" # => 'cheese', or do this instead!!!
 snake.very_fine_hat # => 'cheese'
 ```
 

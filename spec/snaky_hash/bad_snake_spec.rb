@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe "a bad one" do
-
   subject(:bad_snake) do
     Class.new(Hashie::Mash) do
       include SnakyHash::Snake.new(key_type: :slartibartfarst)

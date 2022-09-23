@@ -45,6 +45,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "rake", ">= 12"
   spec.add_development_dependency "rspec", ">= 3"
-  spec.add_development_dependency "rubocop-lts", "~> 8.0"
   spec.add_development_dependency "rspec-block_is_expected"
+  spec.add_development_dependency "rubocop-lts", "~> 8.0"
 end

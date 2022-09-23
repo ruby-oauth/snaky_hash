@@ -55,8 +55,6 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.6)
     rubocop-lts (8.0.2)
       rubocop-ruby2_2 (~> 1.0.4)
-    rubocop-md (0.4.1)
-      rubocop (>= 0.60)
     rubocop-performance (1.3.0)
       rubocop (>= 0.68.0)
     rubocop-rake (0.5.1)
@@ -101,7 +99,6 @@ DEPENDENCIES
   rspec (~> 3.0)
   rspec-block_is_expected
   rubocop-lts (~> 8.0)
-  rubocop-md
   rubocop-performance
   rubocop-rake
   rubocop-rspec

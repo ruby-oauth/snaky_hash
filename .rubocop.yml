@@ -1,8 +1,9 @@
+inherit_from: .rubocop_todo.yml
+
 inherit_gem:
   rubocop-lts: rubocop-lts.yml
 
 require:
-  - 'rubocop-md'
   - 'rubocop-performance'
   - 'rubocop-rake'
   - 'rubocop-rspec'
@@ -19,5 +20,5 @@ Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
 
-Layout/LineLength:
+Metrics/LineLength:
   Max: 120

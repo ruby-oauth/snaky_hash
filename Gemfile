@@ -21,7 +21,8 @@ gem "overcommit", "~> 0.58" if linting
 
 platforms :mri do
   if linting
-    gem "rubocop-md", require: false
+    # Commented out rubocop-md because of the <--rubocop/md--> bug
+    # gem "rubocop-md", require: false
     # Can be added once we reach rubocop-lts >= v10 (i.e. drop Ruby 2.2)
     # gem 'rubocop-packaging', require: false
     gem "rubocop-performance", require: false
