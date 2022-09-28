@@ -10,11 +10,11 @@ tests. Once you're happy with it send a pull request and post a message to the
 
 ## Contributors
 
-See: [https://gitlab.com/oauth-xx/oauth-tty/-/graphs/main][contributors]
+See: [https://gitlab.com/oauth-xx/oauth-tty/-/graphs/main][🚎contributors]
 
 [comment]: <> (Following links are used by README, CONTRIBUTING, Homepage)
 
 [conduct]: https://gitlab.com/oauth-xx/snaky_hash/-/blob/main/CODE_OF_CONDUCT.md
-[contributors]: https://gitlab.com/oauth-xx/snaky_hash/-/graphs/main
+[🚎contributors]: https://gitlab.com/oauth-xx/snaky_hash/-/graphs/main
 [mailinglist]: http://groups.google.com/group/oauth-ruby
 [source]: https://gitlab.com/oauth-xx/snaky_hash/-/tree/main
