@@ -19,13 +19,13 @@ RSpec.describe SnakyHash::Snake do
 
   it "returns a SnakyHash::Snake from a snake + hash merge" do
     a = TheSnakedHash.new("asd" => "asd")
-    b = Hash.new(zxc: "zxc")
+    b = {zxc: "zxc"}
     expect(a.merge(b)).to be_a(TheSnakedHash)
   end
 
   it "returns a Hash from a hash + snake merge" do
     a = TheSnakedHash.new("asd" => "asd")
-    b = Hash.new(zxc: "zxc")
+    b = {zxc: "zxc"}
     res = b.merge(a)
     expect(res).not_to be_a(TheSnakedHash)
     expect(res).to be_a(Hash)
