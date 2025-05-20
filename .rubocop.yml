@@ -1,24 +1,82 @@
-inherit_from: .rubocop_todo.yml
-
 inherit_gem:
   rubocop-lts: rubocop-lts.yml
 
-require:
-  - 'rubocop-performance'
-  - 'rubocop-rake'
-  - 'rubocop-rspec'
-  - 'rubocop-thread_safety'
+inherit_from:
+  - .rubocop_rspec.yml
 
 AllCops:
   DisplayCopNames: true # Display the name of the failing cops
+  Exclude:
+    - 'gemfiles/vendor/**/*'
+    - 'vendor/**/*'
+    - '**/.irbrc'
 
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+Metrics/BlockLength:
+  Enabled: false
 
-Style/StringLiteralsInInterpolation:
-  Enabled: true
-  EnforcedStyle: double_quotes
+Gemspec/RequiredRubyVersion:
+  Enabled: false
 
-Metrics/LineLength:
-  Max: 120
+Metrics/BlockNesting:
+  Max: 2
+
+Layout/LineLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Max: 4
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'gemfiles/vendor/**/*'
+    - 'vendor/**/*'
+    - '**/.irbrc'
+
+Style/ClassVars:
+  Enabled: false
+
+Style/CollectionMethods:
+  PreferredMethods:
+    map:      'collect'
+    reduce:   'inject'
+    find:     'detect'
+    find_all: 'select'
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/Encoding:
+  Enabled: false
+
+# Does not work with older rubies
+#Style/MapToHash:
+#  Enabled: false
+
+# Does not work with older rubies
+#Style/RedundantBegin:
+#  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Gemspec/DependencyVersion:
+  Enabled: false

@@ -44,8 +44,8 @@ RSpec.shared_examples_for "a snaked hash" do
 
   it "merges well with a Mash" do
     merged = subject.merge Hashie::Mash.new(
-      nested: { fourTimes: "a charm" },
-      nested3: { helloWorld: "hi" }
+      nested: {fourTimes: "a charm"},
+      nested3: {helloWorld: "hi"},
     )
 
     expect(merged.nested.four_times).to eq("a charm")
@@ -58,8 +58,8 @@ RSpec.shared_examples_for "a snaked hash" do
 
   it "updates well with a Mash" do
     subject.update Hashie::Mash.new(
-      nested: { fourTimes: "a charm" },
-      nested3: { helloWorld: "hi" }
+      nested: {fourTimes: "a charm"},
+      nested3: {helloWorld: "hi"},
     )
 
     expect(subject.nested.four_times).to eq("a charm")
@@ -72,8 +72,8 @@ RSpec.shared_examples_for "a snaked hash" do
 
   it "merges well with a Hash" do
     merged = subject.merge(
-      nested: { fourTimes: "work like a charm" },
-      nested3: { helloWorld: "hi" }
+      nested: {fourTimes: "work like a charm"},
+      nested3: {helloWorld: "hi"},
     )
 
     expect(merged.nested.four_times).to eq("work like a charm")
@@ -85,7 +85,7 @@ RSpec.shared_examples_for "a snaked hash" do
   end
 
   it "handles assigning a new Hash and convert it to a rash" do
-    subject.nested3 = { helloWorld: "hi" }
+    subject.nested3 = {helloWorld: "hi"}
 
     expect(subject.nested3).to be_a(subject.class)
     expect(subject.nested3.hello_world).to eq("hi")

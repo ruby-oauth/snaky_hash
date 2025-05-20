@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [Unreleased]
 ### Added
+- Gem is signed by 20-year cert (@pboling)
+  - Expires 2045-04-29
+- Gemspec metadata updates (@pboling)
+- Documentation updates (@pboling)
+- CI covering all code, and all key versions of runtime dependencies (@pboling)
 ### Changed
 ### Fixed
 ### Removed

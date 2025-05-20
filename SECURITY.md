@@ -4,7 +4,8 @@
 
 | Version | Supported | EOL     | Post-EOL / Enterprise                 |
 |---------|-----------|---------|---------------------------------------|
-| 1.0.x   | ✅         | 04/2023 | [Tidelift Subscription][tidelift-ref] |
+| 2.0.x   | ✅         | 04/2023 | [Tidelift Subscription][tidelift-ref] |
+| 1.0.x   |           |         |                                       |
 
 ### EOL Policy
 

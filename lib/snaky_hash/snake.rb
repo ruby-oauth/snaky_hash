@@ -56,14 +56,14 @@ module SnakyHash
           # subs spaces with underscores, strips whitespace
           # Same way ActiveSupport does string.underscore
           define_method :underscore_string do |str|
-            str.to_s.strip
-               .tr(" ", "_")
-               .gsub(/::/, "/")
-               .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-               .gsub(/([a-z\d])([A-Z])/, '\1_\2')
-               .tr("-", "_")
-               .squeeze("_")
-               .downcase
+            str.to_s.strip.
+              tr(" ", "_").
+              gsub("::", "/").
+              gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
+              gsub(/([a-z\d])([A-Z])/, '\1_\2').
+              tr("-", "_").
+              squeeze("_").
+              downcase
           end
         end
       end

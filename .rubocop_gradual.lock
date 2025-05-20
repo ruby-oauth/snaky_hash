@@ -1,0 +1,20 @@
+{
+  "bin/bundle:101990931": [
+    [64, 5, 20, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2485198147]
+  ],
+  "lib/snaky_hash/snake.rb:1580566753": [
+    [19, 7, 1909, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2316609805]
+  ],
+  "snaky_hash.gemspec:218062345": [
+    [4, 23, 12, "Gemspec/RubyVersionGlobalsUsage: Do not use `RUBY_VERSION` in gemspec file.", 31296028]
+  ],
+  "spec/shared_contexts/base_hash.rb:2034972498": [
+    [3, 22, 11, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3936427458]
+  ],
+  "spec/snaky_hash/bad_snake_spec.rb:3931746112": [
+    [3, 16, 11, "RSpec/DescribeClass: The first argument to describe should be the class or module being tested.", 1577626599]
+  ],
+  "spec/snaky_hash/snake_spec.rb:4262905777": [
+    [4, 3, 92, "RSpec/LeakyConstantDeclaration: Stub class constant instead of declaring explicitly.", 3047242215]
+  ]
+}

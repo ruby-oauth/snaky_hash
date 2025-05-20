@@ -11,20 +11,20 @@ RSpec.shared_context "base hash" do
       :nested => {
         "NestedOne" => "One",
         :two => "two",
-        "nested_three" => "three"
+        "nested_three" => "three",
       },
       "nestedTwo" => {
         "nested_two" => 22,
-        :nestedThree => 23
+        :nestedThree => 23,
       },
       :nestedThree => [
-        { nestedFour: 4 },
-        { "nestedFour" => 4 }
+        {nestedFour: 4},
+        {"nestedFour" => 4},
       ],
       "spaced Key" => "When would this happen?",
       "trailing spaces " => "better safe than sorry",
       "extra   spaces" => "hopefully this never happens",
-      4 => "not symbolizable"
+      4 => "not symbolizable",
     }
   end
 end

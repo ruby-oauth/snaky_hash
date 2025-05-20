@@ -1,0 +1,22 @@
+spec/snaky_hash/snake_spec.rb -- 1 warning:
+  [4]:IrresponsibleModule: TheSnakedHash has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
+lib/snaky_hash/snake.rb -- 12 warnings:
+  [31, 33]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#self.to_mod calls 'define_method(:convert_key)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [31, 33]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#self.to_mod calls 'key.respond_to?(:to_sym)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [31, 33]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#self.to_mod calls 'key.to_s' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [43, 47]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#self.to_mod calls 'self.class' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [31, 33]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#self.to_mod calls 'underscore_string(key.to_s)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [44, 46]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#self.to_mod calls 'val.dup' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [7]:IrresponsibleModule: SnakyHash::Snake has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
+  [18]:IrresponsibleModule: SnakyHash::Snake::SnakyModulizer has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
+  [31, 33]:ManualDispatch: SnakyHash::Snake::SnakyModulizer#self.to_mod manually dispatches method call [https://github.com/troessner/reek/blob/v6.5.0/docs/Manual-Dispatch.md]
+  [49]:NestedIterators: SnakyHash::Snake::SnakyModulizer#self.to_mod contains iterators nested 2 deep [https://github.com/troessner/reek/blob/v6.5.0/docs/Nested-Iterators.md]
+  [19]:TooManyStatements: SnakyHash::Snake::SnakyModulizer#self.to_mod has approx 17 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
+  [49]:UncommunicativeVariableName: SnakyHash::Snake::SnakyModulizer#self.to_mod has the variable name 'e' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
+lib/snaky_hash/string_keyed.rb -- 1 warning:
+  [2]:IrresponsibleModule: SnakyHash::StringKeyed has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
+lib/snaky_hash/symbol_keyed.rb -- 1 warning:
+  [2]:IrresponsibleModule: SnakyHash::SymbolKeyed has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
+.yard_gfm_support.rb -- 1 warning:
+  [9, 9]:FeatureEnvy: KramdownGfmDocument#initialize refers to 'options' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/v6.5.0/docs/Feature-Envy.md]
+16 total warnings
