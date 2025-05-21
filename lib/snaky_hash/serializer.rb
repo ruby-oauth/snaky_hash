@@ -9,6 +9,12 @@ module SnakyHash
       def extended(base)
         extended_module = Modulizer.to_extended_mod
         base.extend(extended_module)
+        # :nocov:
+        # This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
+        unless VersionGem::Ruby.gte_minimum_version?("2.4")
+          base.include(BackportedInstanceMethods)
+        end
+        # :nocov:
       end
     end
 
@@ -41,6 +47,23 @@ module SnakyHash
           end
         end
       end
+    end
+
+    module BackportedInstanceMethods
+      # :nocov:
+      # This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
+      # Rails <= 5.2 had a transform_values method, which was added to Ruby in version 2.4.
+      # This method is a backport of that original Rails method for Ruby 2.2 and 2.3.
+      def transform_values(&block)
+        return enum_for(:transform_values) { size } unless block_given?
+        return {} if empty?
+        result = self.class.new
+        each do |key, value|
+          result[key] = yield(value)
+        end
+        result
+      end
+      # :nocov:
     end
 
   private
@@ -102,23 +125,6 @@ module SnakyHash
       return value.map { |v| load_value(v) } if value.is_a?(Array)
 
       load_extensions.run(value)
-    end
-
-    # :nocov:
-    # This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
-    unless VersionGem::Ruby.gte_minimum_version?("2.4")
-      # Rails <= 5.2 had a transform_values method, which was added to Ruby in version 2.4.
-      # This method is a backport of that original Rails method for Ruby 2.2 and 2.3.
-      def transform_values(&block)
-        return enum_for(:transform_values) { size } unless block_given?
-        return {} if empty?
-        result = self.class.new
-        each do |key, value|
-          result[key] = yield(value)
-        end
-        result
-      end
-      # :nocov:
     end
   end
 end

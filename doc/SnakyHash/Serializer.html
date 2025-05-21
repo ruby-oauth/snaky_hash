@@ -87,7 +87,7 @@
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Serializer/Modulizer.html" title="SnakyHash::Serializer::Modulizer (module)">Modulizer</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Serializer/BackportedInstanceMethods.html" title="SnakyHash::Serializer::BackportedInstanceMethods (module)">BackportedInstanceMethods</a></span>, <span class='object_link'><a href="Serializer/Modulizer.html" title="SnakyHash::Serializer::Modulizer (module)">Modulizer</a></span>
     
   
     
@@ -213,7 +213,13 @@
 9
 10
 11
-12</pre>
+12
+13
+14
+15
+16
+17
+18</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/snaky_hash/serializer.rb', line 9</span>
@@ -221,7 +227,13 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_extended'>extended</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_extended_module'>extended_module</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Serializer/Modulizer.html" title="SnakyHash::Serializer::Modulizer (module)">Modulizer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_extended_mod'><span class='object_link'><a href="Serializer/Modulizer.html#to_extended_mod-class_method" title="SnakyHash::Serializer::Modulizer.to_extended_mod (method)">to_extended_mod</a></span></span>
   <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='id identifier rubyid_extended_module'>extended_module</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
+  <span class='comment'># :nocov:
+</span>  <span class='comment'># This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
+</span>  <span class='kw'>unless</span> <span class='const'>VersionGem</span><span class='op'>::</span><span class='const'>Ruby</span><span class='period'>.</span><span class='id identifier rubyid_gte_minimum_version?'>gte_minimum_version?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2.4</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_include'>include</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Serializer/BackportedInstanceMethods.html" title="SnakyHash::Serializer::BackportedInstanceMethods (module)">BackportedInstanceMethods</a></span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='comment'># :nocov:
+</span><span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -248,13 +260,13 @@
       <pre class="lines">
 
 
-15
-16
-17
-18</pre>
+21
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/snaky_hash/serializer.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/snaky_hash/serializer.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='id identifier rubyid_dump_hash'>dump_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
@@ -280,14 +292,14 @@
       <pre class="lines">
 
 
-20
-21
-22
-23
-24</pre>
+26
+27
+28
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/snaky_hash/serializer.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/snaky_hash/serializer.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_hash'>raw_hash</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_presence'>presence</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_hash'>raw_hash</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -304,7 +316,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 21 21:10:55 2025 by
+  Generated on Wed May 21 21:33:37 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>
