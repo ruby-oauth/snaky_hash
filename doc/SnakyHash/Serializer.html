@@ -229,7 +229,7 @@
   <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='id identifier rubyid_extended_module'>extended_module</span><span class='rparen'>)</span>
   <span class='comment'># :nocov:
 </span>  <span class='comment'># This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
-</span>  <span class='kw'>unless</span> <span class='const'>VersionGem</span><span class='op'>::</span><span class='const'>Ruby</span><span class='period'>.</span><span class='id identifier rubyid_gte_minimum_version?'>gte_minimum_version?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2.4</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_instance_methods'>instance_methods</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:transform_values</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_include'>include</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Serializer/BackportedInstanceMethods.html" title="SnakyHash::Serializer::BackportedInstanceMethods (module)">BackportedInstanceMethods</a></span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='comment'># :nocov:
@@ -316,7 +316,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 21 21:33:37 2025 by
+  Generated on Wed May 21 22:09:23 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>

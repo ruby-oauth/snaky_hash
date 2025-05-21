@@ -11,7 +11,7 @@ module SnakyHash
         base.extend(extended_module)
         # :nocov:
         # This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
-        unless VersionGem::Ruby.gte_minimum_version?("2.4")
+        unless base.instance_methods.include?(:transform_values)
           base.include(BackportedInstanceMethods)
         end
         # :nocov:
@@ -80,7 +80,9 @@ module SnakyHash
     end
 
     def dump_hash(hash)
-      hash = hash.transform_values do |value|
+      # The hash will be a raw hash, not a hash of this class.
+      # So first we make it a hash of this class.
+      hash = self[hash].transform_values do |value|
         dump_value(value)
       end
       hash.reject { |_, v| blank?(v) }

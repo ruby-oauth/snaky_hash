@@ -19,7 +19,7 @@ RSpec.shared_examples_for "a serialized hash" do
 
     it "does not remove false" do
       value = subject.dump({hello: "World", falseValue: false})
-      expect(value).to eq '{"hello":"World","falseValue":false}'
+      expect(value).to eq '{"hello":"World","false_value":false}'
     end
 
     it "removes any empty items from top-level arrays" do
