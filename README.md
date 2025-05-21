@@ -1,4 +1,4 @@
-# SnakyHash
+# 🐍 SnakyHash
 
 [![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![Depfu][🔑depfui♻️]][🔑depfu] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi♻️]][🔑qlty-cov] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL]
 
@@ -6,14 +6,17 @@
 
 [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
 
-This library is similar in purpose to the HashWithIndifferentAccess that is famously used in Rails.
+This library is similar in purpose to the HashWithIndifferentAccess that is famously used in Rails, but does a lot more.
 
 This gem is used by `oauth` and `oauth2` gems to normalize hash keys to `snake_case` and lookups,
 and provide a nice psuedo-object interface.
 
-It can be thought of as a mashup, with upgrades, to the `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem, and the `serialized_hashie` [gem by krystal](https://github.com/krystal/serialized-hashie).
+It can be thought of as a mashup of:
 
-Classes that include `SnakyHash::Snake` should inherit from `Hashie::Mash`.
+* `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem, and
+* `serialized_hashie` [gem by krystal](https://github.com/krystal/serialized-hashie)
+
+Classes that `include SnakyHash::Snake.new` should inherit from `Hashie::Mash`.
 
 ## New for v2.0.2: Serialization Support
 
@@ -28,6 +31,8 @@ class MyStringKeyedHash < Hashie::Mash
   )
 end
 ```
+
+✨ Also new dump & load plugin extensions to control the way your data is dumped and loaded.
 
 | Federated [DVCS][💎d-in-dvcs] Repository      | Status                                                            | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
 |-----------------------------------------------|-------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
@@ -187,7 +192,7 @@ That is indeed the point of this library, so not a bug.
 
 Note that the key `2` changed to `"2"` (because JSON keys are strings).
 When the JSON dump was reloaded it did not know to restore it as `2` instead of `"2"`.
-This is also not a bug, though if you need different behavior, there is a solution in the next section.
+This is also not a bug, though if you need different behavior, there is a solution in the [next section](#extensions).
 
 ### Extensions
 

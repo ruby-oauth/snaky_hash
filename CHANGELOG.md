@@ -6,15 +6,21 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Removed
+
+## [2.0.2] - 2025-05-21 ([tag][2.0.2t])
+### Added
 - Gem is signed by 20-year cert (@pboling)
   - Expires 2045-04-29
 - Gemspec metadata updates (@pboling)
 - Documentation updates (@pboling)
 - CI covering all code, and all key versions of runtime dependencies (@pboling)
+  - Including Hashie v0, v1, v2, v3, v4, v5, and HEAD
 - [gh2](https://github.com/oauth-xx/snaky_hash/pull/2) - Serializer option (@pboling)
-### Changed
-### Fixed
-### Removed
+- [gh3](https://github.com/oauth-xx/snaky_hash/pull/3) - Serializer Extensions (@pboling)
+- Documentation site at [snaky-hash.galtzo.com](https://snaky-hash.galtzo.com)
 
 ## [2.0.1] - 2022-09-23 ([tag][2.0.1t])
 ### Added
@@ -48,7 +54,9 @@ end
 ### Added
 - Initial release
 
-[Unreleased]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.1...main
+[Unreleased]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.2...main
+[2.0.21]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.1...v2.0.2
+[2.0.2t]: https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v2.0.2
 [2.0.1]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.0...v2.0.1
 [2.0.1t]: https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v2.0.1
 [2.0.0]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v1.0.1...v2.0.0
