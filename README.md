@@ -1,4 +1,4 @@
-# SnakyHash
+# 🐍 SnakyHash
 
 [![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![Depfu][🔑depfui♻️]][🔑depfu] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi♻️]][🔑qlty-cov] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL]
 
@@ -6,14 +6,17 @@
 
 [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
 
-This library is similar in purpose to the HashWithIndifferentAccess that is famously used in Rails.
+This library is similar in purpose to the HashWithIndifferentAccess that is famously used in Rails, but does a lot more.
 
-This gem is used by `oauth`, `oauth2`, and other, gems to normalize hash keys to `snake_case` and lookups,
+This gem is used by `oauth` and `oauth2` gems to normalize hash keys to `snake_case` and lookups,
 and provide a nice psuedo-object interface.
 
-It can be thought of as a mashup, with upgrades, to the `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem, and the `serialized_hashie` [gem by krystal](https://github.com/krystal/serialized-hashie).
+It can be thought of as a mashup of:
 
-Classes that include `SnakyHash::Snake` should inherit from `Hashie::Mash`.
+* `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem, and
+* `serialized_hashie` [gem by krystal](https://github.com/krystal/serialized-hashie)
+
+Classes that `include SnakyHash::Snake.new` should inherit from `Hashie::Mash`.
 
 ## New for v2.0.2: Serialization Support
 
@@ -28,6 +31,8 @@ class MyStringKeyedHash < Hashie::Mash
   )
 end
 ```
+
+✨ Also new dump & load plugin extensions to control the way your data is dumped and loaded.
 
 | Federated [DVCS][💎d-in-dvcs] Repository      | Status                                                            | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
 |-----------------------------------------------|-------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
@@ -147,7 +152,8 @@ end
 snake = MySnakedHash.new(:a => "a", "b" => "b", 2 => 2, "VeryFineHat" => "Feathers")
 snake.a # => 'a'
 snake.b # => 'b'
-snake[2] # 2
+snake[2] # => 2
+snake["2"] # => nil, note that this gem only affects string / symbol keys.
 snake.very_fine_hat # => 'Feathers'
 snake[:very_fine_hat] # => 'Feathers'
 snake["very_fine_hat"] # => 'Feathers'
@@ -158,11 +164,97 @@ The `key_type` determines how the key is actually stored, but the hash acts as "
 Note also that keys which do not respond to `to_sym`, because they don't have a natural conversion to a Symbol,
 are left as-is.
 
+### Serialization
+
+```ruby
+class MySerializedSnakedHash < Hashie::Mash
+  include SnakyHash::Snake.new(
+    key_type: :symbol, # default :string
+    serializer: true,   # default: false
+  )
+end
+
+snake = MySerializedSnakedHash.new(:a => "a", "b" => "b", 2 => 2, "VeryFineHat" => "Feathers") # => {a: "a", b: "b", 2 => 2, very_fine_hat: "Feathers"}
+dump = MySerializedSnakedHash.dump(snake) # => "{\"a\":\"a\",\"b\":\"b\",\"2\":2,\"very_fine_hat\":\"Feathers\"}"
+hydrated = MySerializedSnakedHash.load(dump) # => {a: "a", b: "b", "2": 2, very_fine_hat: "Feathers"}
+hydrated.class # => MySerializedSnakedHash
+hydrated.a # => 'a'
+hydrated.b # => 'b'
+hydrated[2] # => nil # NOTE: this is the opposite of snake[2] => 2
+hydrated["2"] # => 2 # NOTE: this is the opposite of snake["2"] => nil
+hydrated.very_fine_hat # => 'Feathers'
+hydrated[:very_fine_hat] # => 'Feathers'
+hydrated["very_fine_hat"] # => 'Feathers'
+```
+
+Note that the key `VeryFineHat` changed to `very_fine_hat`.
+That is indeed the point of this library, so not a bug.
+
+Note that the key `2` changed to `"2"` (because JSON keys are strings).
+When the JSON dump was reloaded it did not know to restore it as `2` instead of `"2"`.
+This is also not a bug, though if you need different behavior, there is a solution in the [next section](#extensions).
+
+### Extensions
+
+You can write your own arbitrary extensions:
+
+* "Hash Load" extensions operate on the hash, and nested hashes
+  * use `::load_hash_extensions.add(:extension_name) { |hash| }`
+* "Load" extensions operate on the values, and nested hash's values, if any
+    * use `::load_extensions.add(:extension_name) { |value| }`
+* "Dump" extensions operate on the values, and nested hash's values, if any
+    * use `::dump_extensions.add(:extension_name) { |value| }`
+
+#### Example
+
+Let's say I want all integer-like keys, except 0, to be integer keys,
+while 0 converts to, and stays, a string forever.
+
+```ruby
+class MyExtSnakedHash < Hashie::Mash
+  include SnakyHash::Snake.new(
+    key_type: :symbol, # default :string
+    serializer: true,   # default: false
+  )
+end
+
+MyExtSnakedHash.load_hash_extensions.add(:non_zero_keys_to_int) do |value|
+  if value.is_a?(Hash)
+    value.transform_keys do |key|
+      key_int = key.to_s.to_i
+      if key_int > 0
+        key_int
+      else
+        key
+      end
+    end
+  else
+    value
+  end
+end
+
+snake = MyExtSnakedHash.new(1 => "a", 0 => 4, "VeryFineHat" => {3 => "v", 5 => 7, :very_fine_hat => "feathers"}) # => {1 => "a", 0 => 4, very_fine_hat: {3 => "v", 5 => 7, very_fine_hat: "feathers"}}
+dump = MyExtSnakedHash.dump(snake) # => "{\"1\":\"a\",\"0\":4,\"very_fine_hat\":{\"3\":\"v\",\"5\":7,\"very_fine_hat\":\"feathers\"}}"
+hydrated = MyExtSnakedHash.load(dump) # => {1 => "a", "0": 4, very_fine_hat: {3 => "v", 5 => 7, very_fine_hat: "feathers"}}
+hydrated.class # => MyExtSnakedHash
+hydrated["1"] # => nil
+hydrated[1] # => "a"
+hydrated["0"] # => 4
+hydrated[0] # => nil
+hydrated.very_fine_hat # => {3 => "v", 5 => 7, very_fine_hat: "feathers"}
+hydrated.very_fine_hat.very_fine_hat # => "feathers"
+hydrated.very_fine_hat[:very_fine_hat] # => 'feathers'
+hydrated.very_fine_hat["very_fine_hat"] # => 'feathers'
+```
+
+See the specs for more examples.
+
 ### Stranger Things
 
 I don't recommend using these features... but they exist (for now).
 You can still access the original un-snaked camel keys.
 And through them you can even use un-snaked camel methods.
+But don't.
 
 ```ruby
 snake.key?("VeryFineHat") # => true
