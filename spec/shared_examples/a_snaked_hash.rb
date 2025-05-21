@@ -25,7 +25,7 @@ RSpec.shared_examples_for "a snaked hash" do
 
   it "allows camelCased accessors" do
     # avoiding hashie v5- warnings
-    subject.class.disable_warnings(:varOne) if Gem::Version.new(Hashie::VERSION) >= Gem::Version.new("5.0.0")
+    subject.class.disable_warnings(:varOne) if defined?(Hashie::VERSION) && Gem::Version.new(Hashie::VERSION) >= Gem::Version.new("5.0.0")
 
     expect(subject.varOne).to eq(1)
     subject.varOne = "once"
@@ -35,7 +35,7 @@ RSpec.shared_examples_for "a snaked hash" do
 
   it "allows camelCased accessors on nested hashes" do
     # avoiding hashie v5-  warnings
-    subject.class.disable_warnings(:nestedOne) if Gem::Version.new(Hashie::VERSION) >= Gem::Version.new("5.0.0")
+    subject.class.disable_warnings(:nestedOne) if defined?(Hashie::VERSION) && Gem::Version.new(Hashie::VERSION) >= Gem::Version.new("5.0.0")
 
     expect(subject.nested.nestedOne).to eq("One")
     subject.nested.nestedOne = "once"
