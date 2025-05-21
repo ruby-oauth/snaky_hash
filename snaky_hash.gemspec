@@ -89,7 +89,7 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = []
 
-  spec.add_dependency("hashie")
+  spec.add_dependency("hashie", ">= 0.1.0", "< 6") # Hashie::Mash was introduced in v0.1.0
   spec.add_dependency("version_gem", ">= 1.1.8", "< 3")   # Ruby >= 2.2
 
   spec.add_development_dependency("rake", "~> 13.0")                    # ruby >= 2.2
