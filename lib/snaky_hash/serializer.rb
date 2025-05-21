@@ -3,8 +3,21 @@
 require "json"
 
 module SnakyHash
+  # Provides JSON serialization and deserialization capabilities with extensible value transformation
+  #
+  # @example Basic usage
+  #   class MyHash < Hashie::Mash
+  #     extend SnakyHash::Serializer
+  #   end
+  #   hash = MyHash.load('{"key": "value"}')
+  #   hash.dump #=> '{"key":"value"}'
+  #
   module Serializer
     class << self
+      # Extends the base class with serialization capabilities
+      #
+      # @param base [Class] the class being extended
+      # @return [void]
       def extended(base)
         extended_module = Modulizer.to_extended_mod
         base.extend(extended_module)
@@ -17,19 +30,31 @@ module SnakyHash
       end
     end
 
+    # Serializes a hash object to JSON
+    #
+    # @param obj [Hash] the hash to serialize
+    # @return [String] JSON string representation of the hash
     def dump(obj)
       hash = dump_hash(obj)
       hash.to_json
     end
 
+    # Deserializes a JSON string into a hash object
+    #
+    # @param raw_hash [String, nil] JSON string to deserialize
+    # @return [Hash] deserialized hash object
     def load(raw_hash)
       hash = JSON.parse(presence(raw_hash) || "{}")
       hash = load_value(new(hash))
       new(hash)
     end
 
+    # Internal module for generating extension methods
     module Modulizer
       class << self
+        # Creates a new module with extension management methods
+        #
+        # @return [Module] a module containing extension management methods
         def to_extended_mod
           Module.new do
             define_method :load_extensions do
@@ -48,11 +73,17 @@ module SnakyHash
       end
     end
 
+    # Provides backported methods for older Ruby versions
     module BackportedInstanceMethods
       # :nocov:
-      # This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
-      # Rails <= 5.2 had a transform_values method, which was added to Ruby in version 2.4.
-      # This method is a backport of that original Rails method for Ruby 2.2 and 2.3.
+      # Transforms values of a hash using the given block
+      #
+      # @yield [Object] block to transform each value
+      # @return [Hash] new hash with transformed values
+      # @return [Enumerator] if no block given
+      # @note This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
+      #       Rails <= 5.2 had a transform_values method, which was added to Ruby in version 2.4.
+      #       This method is a backport of that original Rails method for Ruby 2.2 and 2.3.
       def transform_values(&block)
         return enum_for(:transform_values) { size } unless block_given?
         return {} if empty?
@@ -67,6 +98,10 @@ module SnakyHash
 
   private
 
+    # Checks if a value is blank (nil or empty string)
+    #
+    # @param value [Object] value to check
+    # @return [Boolean] true if value is blank
     def blank?(value)
       return true if value.nil?
       return true if value.is_a?(String) && value.empty?
@@ -74,19 +109,29 @@ module SnakyHash
       false
     end
 
+    # Returns nil if value is blank, otherwise returns the value
+    #
+    # @param value [Object] value to check
+    # @return [Object, nil] the value or nil if blank
     def presence(value)
       blank?(value) ? nil : value
     end
 
+    # Processes a hash for dumping, transforming its values
+    #
+    # @param hash [Hash] hash to process
+    # @return [Hash] processed hash with transformed values
     def dump_hash(hash)
-      # The hash will be a raw hash, not a hash of this class.
-      # So first we make it a hash of this class.
       hash = self[hash].transform_values do |value|
         dump_value(value)
       end
       hash.reject { |_, v| blank?(v) }
     end
 
+    # Processes a single value for dumping
+    #
+    # @param value [Object] value to process
+    # @return [Object, nil] processed value
     def dump_value(value)
       if blank?(value)
         return
@@ -103,24 +148,24 @@ module SnakyHash
       dump_extensions.run(value)
     end
 
+    # Processes a hash for loading, transforming its values
+    #
+    # @param hash [Hash] hash to process
+    # @return [Hash] processed hash with transformed values
     def load_hash(hash)
-      # The hash will be a raw hash, not a hash of this class.
-      # So first we make it a hash of this class.
       hash.transform_values do |value|
         load_value(value)
       end
     end
 
+    # Processes a single value for loading
+    #
+    # @param value [Object] value to process
+    # @return [Object] processed value
     def load_value(value)
       if value.is_a?(::Hash)
-        # The extension might call `transform_keys, or similar, thus returning a new vanilla hash
         hash = load_hash_extensions.run(new(value))
-
-        # If the result is still a hash, we'll return that here
         return load_hash(new(hash)) if hash.is_a?(::Hash)
-
-        # If the result is not a hash, we'll just return whatever
-        # was returned as a normal value.
         return load_value(hash)
       end
 

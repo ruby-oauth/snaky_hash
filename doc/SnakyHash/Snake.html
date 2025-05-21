@@ -101,7 +101,24 @@
   
 </div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Unlike Hashie::Mash, this implementation allows for both String and Symbol key types</p>
+</div>
+  </div>
+
+<p>Creates a module that provides key conversion functionality when included</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -129,7 +146,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#included-instance_method" title="#included (instance method)">#<strong>included</strong>(base)  &#x21d2; Object </a>
+      <a href="#included-instance_method" title="#included (instance method)">#<strong>included</strong>(base)  &#x21d2; void </a>
     
 
     
@@ -143,7 +160,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Includes appropriate conversion methods into the base class.</p>
 </div></span>
   
 </li>
@@ -168,7 +185,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>A new instance of Snake.</p>
+    <span class="summary_desc"><div class='inline'><p>Initialize a new Snake module.</p>
 </div></span>
   
 </li>
@@ -192,13 +209,68 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns a new instance of Snake.</p>
+    <p>Initialize a new Snake module</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>key_type</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:string</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>the type to convert keys to (:string or :symbol)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>serializer</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>whether to include serialization capabilities</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if key_type is not :string or :symbol</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -206,14 +278,14 @@
       <pre class="lines">
 
 
-8
-9
-10
-11
-12</pre>
+30
+31
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>key_type:</span> <span class='symbol'>:string</span><span class='comma'>,</span> <span class='label'>serializer:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -235,28 +307,57 @@
       <div class="method_details first">
   <h3 class="signature first" id="included-instance_method">
   
-    #<strong>included</strong>(base)  &#x21d2; <tt>Object</tt> 
+    #<strong>included</strong>(base)  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Includes appropriate conversion methods into the base class</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>base</span>
+      
+      
+        <span class='type'>(<tt>Class</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the class including this module</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-14
-15
-16
-17
-18
-19
-20</pre>
+40
+41
+42
+43
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_conversions_module'>conversions_module</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Snake/SnakyModulizer.html" title="SnakyHash::Snake::SnakyModulizer (module)">SnakyModulizer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_mod'><span class='object_link'><a href="Snake/SnakyModulizer.html#to_mod-class_method" title="SnakyHash::Snake::SnakyModulizer.to_mod (method)">to_mod</a></span></span><span class='lparen'>(</span><span class='ivar'>@key_type</span><span class='rparen'>)</span>
@@ -275,7 +376,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu May 22 03:44:50 2025 by
+  Generated on Thu May 22 04:27:14 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>

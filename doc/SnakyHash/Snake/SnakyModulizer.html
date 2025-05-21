@@ -83,7 +83,17 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Internal module factory for creating key conversion functionality</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -101,7 +111,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_mod-class_method" title="to_mod (class method)">.<strong>to_mod</strong>(key_type)  &#x21d2; Object </a>
+      <a href="#to_mod-class_method" title="to_mod (class method)">.<strong>to_mod</strong>(key_type)  &#x21d2; Module </a>
     
 
     
@@ -115,7 +125,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Creates a new module with key conversion methods based on the specified key type.</p>
 </div></span>
   
 </li>
@@ -133,50 +143,81 @@
       <div class="method_details first">
   <h3 class="signature first" id="to_mod-class_method">
   
-    .<strong>to_mod</strong>(key_type)  &#x21d2; <tt>Object</tt> 
+    .<strong>to_mod</strong>(key_type)  &#x21d2; <tt>Module</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new module with key conversion methods based on the specified key type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key_type</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the type to convert keys to (:string or :symbol)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Module</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a new module with conversion methods</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if key_type is not supported</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
 56
 57
 58
@@ -195,33 +236,74 @@
 71
 72
 73
-74</pre>
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_mod'>to_mod</span><span class='lparen'>(</span><span class='id identifier rubyid_key_type'>key_type</span><span class='rparen'>)</span>
   <span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
-    <span class='comment'># Converts a key to a symbol, or a string, depending on key_type,
-</span>    <span class='comment'>#   but only if it is able to be converted to a symbol,
-</span>    <span class='comment'>#   and after underscoring it.
-</span>    <span class='comment'>#
-</span>    <span class='comment'># @api private
-</span>    <span class='comment'># @param [&lt;K&gt;] key the key to attempt convert to a symbol
-</span>    <span class='comment'># @return [Symbol, K]
-</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_key_type'>key_type</span>
     <span class='kw'>when</span> <span class='symbol'>:string</span> <span class='kw'>then</span>
-      <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:convert_key</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_underscore_string'>underscore_string</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span> <span class='rbrace'>}</span>
+      <span class='comment'># Converts a key to a string if possible, after underscoring
+</span>      <span class='comment'>#
+</span>      <span class='comment'># @param key [Object] the key to convert
+</span>      <span class='comment'># @return [String, Object] the converted key or original if not convertible
+</span>      <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:convert_key</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_underscore_string'>underscore_string</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span> <span class='rbrace'>}</span>
     <span class='kw'>when</span> <span class='symbol'>:symbol</span> <span class='kw'>then</span>
-      <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:convert_key</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_underscore_string'>underscore_string</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span> <span class='rbrace'>}</span>
+      <span class='comment'># Converts a key to a symbol if possible, after underscoring
+</span>      <span class='comment'>#
+</span>      <span class='comment'># @param key [Object] the key to convert
+</span>      <span class='comment'># @return [Symbol, Object] the converted key or original if not convertible
+</span>      <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:convert_key</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_underscore_string'>underscore_string</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span> <span class='rbrace'>}</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SnakyHash: Unhandled key_type: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key_type'>key_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
 
-    <span class='comment'># Unlike its parent Mash, a SnakyHash::Snake will convert other
-</span>    <span class='comment'>#   Hashie::Hash values to a SnakyHash::Snake when assigning
-</span>    <span class='comment'>#   instead of respecting the existing subclass
+    <span class='comment'># Converts hash values to the appropriate type when assigning
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param val [Object] the value to convert
+</span>    <span class='comment'># @param duping [Boolean] whether the value is being duplicated
+</span>    <span class='comment'># @return [Object] the converted value
 </span>    <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:convert_value</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_duping'>duping</span> <span class='op'>=</span> <span class='kw'>false</span><span class='op'>|</span> <span class='comment'>#:nodoc:
 </span>      <span class='kw'>case</span> <span class='id identifier rubyid_val'>val</span>
       <span class='kw'>when</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span>
@@ -236,9 +318,14 @@
       <span class='kw'>end</span>
     <span class='kw'>end</span>
 
-    <span class='comment'># converts a camel_cased string to a underscore string
-</span>    <span class='comment'># subs spaces with underscores, strips whitespace
-</span>    <span class='comment'># Same way ActiveSupport does string.underscore
+    <span class='comment'># Converts a string to underscore case
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param str [String, #to_s] the string to convert
+</span>    <span class='comment'># @return [String] the underscored string
+</span>    <span class='comment'># @example
+</span>    <span class='comment'>#   underscore_string(&quot;CamelCase&quot;)  #=&gt; &quot;camel_case&quot;
+</span>    <span class='comment'>#   underscore_string(&quot;API::V1&quot;)    #=&gt; &quot;api/v1&quot;
+</span>    <span class='comment'># @note This is the same as ActiveSupport&#39;s String#underscore
 </span>    <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:underscore_string</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_str'>str</span><span class='op'>|</span>
       <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='period'>.</span>
         <span class='id identifier rubyid_tr'>tr</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span>
@@ -261,7 +348,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu May 22 03:44:50 2025 by
+  Generated on Thu May 22 04:27:14 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>

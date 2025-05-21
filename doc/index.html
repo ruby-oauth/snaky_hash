@@ -97,6 +97,19 @@ end
 
 <p>✨ Also new dump &amp; load plugin extensions to control the way your data is dumped and loaded.</p>
 
+<h3 id="note-for-use-with-oauth2-gem">Note for use with oauth2 gem</h3>
+
+<p>The serializer is being introduced as a disabled option for backwards compatibility.<br>
+In snaky_hash v3 it will default to <code>true</code>.<br>
+If you want to start using the serializer immediately, reopen the <code>SnakyHash::StringKeyed</code> class and add the <code>SnakyHash::Serializer</code> module like this:</p>
+
+<pre class="code language-ruby"><code class="language-ruby">SnakyHash::StringKeyed.class_eval do
+  extend SnakyHash::Serializer
+end
+</code></pre>
+
+<p>You can then add serialization extensions as needed.  See <a href="#serialization">serialization</a> and <a href="#extensions">extensions</a> for more.</p>
+
 <table>
   <thead>
     <tr>
@@ -275,7 +288,7 @@ and are developed in tight collaboration with the oauth and oauth2 gems.</p>
     <tr>
       <td>Source</td>
       <td>
-<a href="https://gitlab.com/oauth-xx/snaky_hash/"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/oauth-xx/snaky_hash"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/oauth-xx/snaky_hash"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.518-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
+<a href="https://gitlab.com/oauth-xx/snaky_hash/"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/oauth-xx/snaky_hash"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/oauth-xx/snaky_hash"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.119-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
 </td>
     </tr>
     <tr>
@@ -634,7 +647,7 @@ CodeCov currently fails to parse the coverage upload.
 </div></div>
 
       <div id="footer">
-  Generated on Thu May 22 03:44:50 2025 by
+  Generated on Thu May 22 04:27:14 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>

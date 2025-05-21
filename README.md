@@ -34,6 +34,20 @@ end
 
 ✨ Also new dump & load plugin extensions to control the way your data is dumped and loaded.
 
+### Note for use with oauth2 gem
+
+The serializer is being introduced as a disabled option for backwards compatibility.
+In snaky_hash v3 it will default to `true`.
+If you want to start using the serializer immediately, reopen the `SnakyHash::StringKeyed` class and add the `SnakyHash::Serializer` module like this:
+
+```ruby
+SnakyHash::StringKeyed.class_eval do
+  extend SnakyHash::Serializer
+end
+```
+
+You can then add serialization extensions as needed.  See [serialization](#serialization) and [extensions](#extensions) for more.
+
 | Federated [DVCS][💎d-in-dvcs] Repository      | Status                                                            | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
 |-----------------------------------------------|-------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
 | 🧪 [oauth-xx/snaky_hash on GitLab][📜src-gl]      | The Truth                                                         | [💚][🤝gl-issues]         | [💚][🤝gl-pulls]         | [💚][📜wiki]              | 🏀 Tiny Matrix           | ➖                            |
@@ -539,7 +553,7 @@ or one of the others at the head of this README.
 [📌gitmoji]:https://gitmoji.dev
 [📌gitmoji-img]:https://img.shields.io/badge/gitmoji_commits-%20😜%20😍-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.518-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
+[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.119-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
 [🔐security]: SECURITY.md
 [🔐security-img]: https://img.shields.io/badge/security-policy-259D6C.svg?style=flat
 [📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year

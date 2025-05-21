@@ -1,5 +1,5 @@
 module SnakyHash
-  # serialized is being introduced as an always disabled option for backwards compatibility.
+  # serializer is being introduced as an always disabled option for backwards compatibility.
   # In snaky_hash v3 it will default to true.
   # If you want to start using it immediately, reopen this class and add the Serializer module:
   #

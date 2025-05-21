@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ### Removed
 
 ## [2.0.2] - 2025-05-21 ([tag][2.0.2t])
+- COVERAGE: 100.00% -- 119/119 lines in 7 files
+- BRANCH COVERAGE: 100.00% -- 35/35 branches in 7 files
+- 100.00% documented
 ### Added
 - Gem is signed by 20-year cert (@pboling)
   - Expires 2045-04-29
@@ -20,7 +23,8 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
   - Including Hashie v0, v1, v2, v3, v4, v5, and HEAD
 - [gh2](https://github.com/oauth-xx/snaky_hash/pull/2) - Serializer option (@pboling)
 - [gh3](https://github.com/oauth-xx/snaky_hash/pull/3) - Serializer Extensions (@pboling)
-- Documentation site at [snaky-hash.galtzo.com](https://snaky-hash.galtzo.com)
+- Documentation site at [snaky-hash.galtzo.com](https://snaky-hash.galtzo.com) (@pboling)
+- 100% documented! (@pboling)
 
 ## [2.0.1] - 2022-09-23 ([tag][2.0.1t])
 ### Added

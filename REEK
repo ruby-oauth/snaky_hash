@@ -1,36 +1,28 @@
 spec/snaky_hash/snake_spec.rb -- 1 warning:
   [4]:IrresponsibleModule: TheSnakedHash has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
-lib/snaky_hash/extensions.rb -- 2 warnings:
-  [4]:InstanceVariableAssumption: SnakyHash::Extensions assumes too much for instance variable '@extensions' [https://github.com/troessner/reek/blob/v6.5.0/docs/Instance-Variable-Assumption.md]
-  [4]:IrresponsibleModule: SnakyHash::Extensions has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
-lib/snaky_hash/serializer.rb -- 11 warnings:
-  [7]:IrresponsibleModule: SnakyHash::Serializer has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
-  [52]:IrresponsibleModule: SnakyHash::Serializer::BackportedInstanceMethods has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
-  [32]:IrresponsibleModule: SnakyHash::Serializer::Modulizer has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
-  [72]:NilCheck: SnakyHash::Serializer#blank? performs a nil-check [https://github.com/troessner/reek/blob/v6.5.0/docs/Nil-Check.md]
-  [115]:TooManyStatements: SnakyHash::Serializer#load_value has approx 6 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
-  [57]:TooManyStatements: SnakyHash::Serializer::BackportedInstanceMethods#transform_values has approx 7 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
-  [34]:TooManyStatements: SnakyHash::Serializer::Modulizer#to_extended_mod has approx 7 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
-  [88]:UncommunicativeVariableName: SnakyHash::Serializer#dump_hash has the variable name 'v' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
-  [101]:UncommunicativeVariableName: SnakyHash::Serializer#dump_value has the variable name 'v' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
-  [128]:UncommunicativeVariableName: SnakyHash::Serializer#load_value has the variable name 'v' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
-  [71]:UtilityFunction: SnakyHash::Serializer#blank? doesn't depend on instance state (maybe move it to another class?) [https://github.com/troessner/reek/blob/v6.5.0/docs/Utility-Function.md]
-lib/snaky_hash/snake.rb -- 13 warnings:
-  [8]:BooleanParameter: SnakyHash::Snake#initialize has boolean parameter 'serializer' [https://github.com/troessner/reek/blob/v6.5.0/docs/Boolean-Parameter.md]
-  [36, 38]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'define_method(:convert_key)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
-  [36, 38]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'key.respond_to?(:to_sym)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
-  [36, 38]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'key.to_s' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
-  [48, 52]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'self.class' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
-  [36, 38]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'underscore_string(key.to_s)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
-  [49, 51]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'val.dup' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
-  [7]:IrresponsibleModule: SnakyHash::Snake has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
-  [22]:IrresponsibleModule: SnakyHash::Snake::SnakyModulizer has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
-  [36, 38]:ManualDispatch: SnakyHash::Snake::SnakyModulizer#to_mod manually dispatches method call [https://github.com/troessner/reek/blob/v6.5.0/docs/Manual-Dispatch.md]
-  [54]:NestedIterators: SnakyHash::Snake::SnakyModulizer#to_mod contains iterators nested 2 deep [https://github.com/troessner/reek/blob/v6.5.0/docs/Nested-Iterators.md]
-  [24]:TooManyStatements: SnakyHash::Snake::SnakyModulizer#to_mod has approx 17 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
-  [54]:UncommunicativeVariableName: SnakyHash::Snake::SnakyModulizer#to_mod has the variable name 'e' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
-lib/snaky_hash.rb -- 1 warning:
-  [16]:IrresponsibleModule: SnakyHash::Error has no descriptive comment [https://github.com/troessner/reek/blob/v6.5.0/docs/Irresponsible-Module.md]
+lib/snaky_hash/extensions.rb -- 1 warning:
+  [11]:InstanceVariableAssumption: SnakyHash::Extensions assumes too much for instance variable '@extensions' [https://github.com/troessner/reek/blob/v6.5.0/docs/Instance-Variable-Assumption.md]
+lib/snaky_hash/serializer.rb -- 8 warnings:
+  [106]:NilCheck: SnakyHash::Serializer#blank? performs a nil-check [https://github.com/troessner/reek/blob/v6.5.0/docs/Nil-Check.md]
+  [165]:TooManyStatements: SnakyHash::Serializer#load_value has approx 6 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
+  [87]:TooManyStatements: SnakyHash::Serializer::BackportedInstanceMethods#transform_values has approx 7 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
+  [58]:TooManyStatements: SnakyHash::Serializer::Modulizer#to_extended_mod has approx 7 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
+  [128]:UncommunicativeVariableName: SnakyHash::Serializer#dump_hash has the variable name 'v' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
+  [145]:UncommunicativeVariableName: SnakyHash::Serializer#dump_value has the variable name 'v' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
+  [172]:UncommunicativeVariableName: SnakyHash::Serializer#load_value has the variable name 'v' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
+  [105]:UtilityFunction: SnakyHash::Serializer#blank? doesn't depend on instance state (maybe move it to another class?) [https://github.com/troessner/reek/blob/v6.5.0/docs/Utility-Function.md]
+lib/snaky_hash/snake.rb -- 11 warnings:
+  [30]:BooleanParameter: SnakyHash::Snake#initialize has boolean parameter 'serializer' [https://github.com/troessner/reek/blob/v6.5.0/docs/Boolean-Parameter.md]
+  [64, 70]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'define_method(:convert_key)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [64, 70]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'key.respond_to?(:to_sym)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [64, 70]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'key.to_s' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [82, 86]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'self.class' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [64, 70]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'underscore_string(key.to_s)' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [83, 85]:DuplicateMethodCall: SnakyHash::Snake::SnakyModulizer#to_mod calls 'val.dup' 2 times [https://github.com/troessner/reek/blob/v6.5.0/docs/Duplicate-Method-Call.md]
+  [64, 70]:ManualDispatch: SnakyHash::Snake::SnakyModulizer#to_mod manually dispatches method call [https://github.com/troessner/reek/blob/v6.5.0/docs/Manual-Dispatch.md]
+  [88]:NestedIterators: SnakyHash::Snake::SnakyModulizer#to_mod contains iterators nested 2 deep [https://github.com/troessner/reek/blob/v6.5.0/docs/Nested-Iterators.md]
+  [56]:TooManyStatements: SnakyHash::Snake::SnakyModulizer#to_mod has approx 17 statements [https://github.com/troessner/reek/blob/v6.5.0/docs/Too-Many-Statements.md]
+  [88]:UncommunicativeVariableName: SnakyHash::Snake::SnakyModulizer#to_mod has the variable name 'e' [https://github.com/troessner/reek/blob/v6.5.0/docs/Uncommunicative-Variable-Name.md]
 .yard_gfm_support.rb -- 1 warning:
   [9, 9]:FeatureEnvy: KramdownGfmDocument#initialize refers to 'options' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/v6.5.0/docs/Feature-Envy.md]
-29 total warnings
+22 total warnings

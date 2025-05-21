@@ -1,16 +1,42 @@
 # This is a module-class hybrid.
 #
+# A flexible key conversion system that supports both String and Symbol keys,
+# with optional serialization capabilities.
+#
+# @example Basic usage with string keys
+#   class MyHash < Hashie::Mash
+#     include SnakyHash::Snake.new(key_type: :string)
+#   end
+#
+# @example Usage with symbol keys and serialization
+#   class MySerializableHash < Hashie::Mash
+#     include SnakyHash::Snake.new(key_type: :symbol, serializer: true)
+#   end
+#
 # Hashie's standard SymbolizeKeys is similar to the functionality we want.
 # ... but not quite.  We need to support both String (for oauth2) and Symbol keys (for oauth).
-# include Hashie::Extensions::Mash::SymbolizeKeys
+# see: Hashie::Extensions::Mash::SymbolizeKeys
+#
 module SnakyHash
+  # Creates a module that provides key conversion functionality when included
+  #
+  # @note Unlike Hashie::Mash, this implementation allows for both String and Symbol key types
   class Snake < Module
+    # Initialize a new Snake module
+    #
+    # @param key_type [Symbol] the type to convert keys to (:string or :symbol)
+    # @param serializer [Boolean] whether to include serialization capabilities
+    # @raise [ArgumentError] if key_type is not :string or :symbol
     def initialize(key_type: :string, serializer: false)
       super()
       @key_type = key_type
       @serializer = serializer
     end
 
+    # Includes appropriate conversion methods into the base class
+    #
+    # @param base [Class] the class including this module
+    # @return [void]
     def included(base)
       conversions_module = SnakyModulizer.to_mod(@key_type)
       base.include(conversions_module)
@@ -19,30 +45,38 @@ module SnakyHash
       end
     end
 
+    # Internal module factory for creating key conversion functionality
     module SnakyModulizer
       class << self
+        # Creates a new module with key conversion methods based on the specified key type
+        #
+        # @param key_type [Symbol] the type to convert keys to (:string or :symbol)
+        # @return [Module] a new module with conversion methods
+        # @raise [ArgumentError] if key_type is not supported
         def to_mod(key_type)
           Module.new do
-            # Converts a key to a symbol, or a string, depending on key_type,
-            #   but only if it is able to be converted to a symbol,
-            #   and after underscoring it.
-            #
-            # @api private
-            # @param [<K>] key the key to attempt convert to a symbol
-            # @return [Symbol, K]
-
             case key_type
             when :string then
+              # Converts a key to a string if possible, after underscoring
+              #
+              # @param key [Object] the key to convert
+              # @return [String, Object] the converted key or original if not convertible
               define_method(:convert_key) { |key| key.respond_to?(:to_sym) ? underscore_string(key.to_s) : key }
             when :symbol then
+              # Converts a key to a symbol if possible, after underscoring
+              #
+              # @param key [Object] the key to convert
+              # @return [Symbol, Object] the converted key or original if not convertible
               define_method(:convert_key) { |key| key.respond_to?(:to_sym) ? underscore_string(key.to_s).to_sym : key }
             else
               raise ArgumentError, "SnakyHash: Unhandled key_type: #{key_type}"
             end
 
-            # Unlike its parent Mash, a SnakyHash::Snake will convert other
-            #   Hashie::Hash values to a SnakyHash::Snake when assigning
-            #   instead of respecting the existing subclass
+            # Converts hash values to the appropriate type when assigning
+            #
+            # @param val [Object] the value to convert
+            # @param duping [Boolean] whether the value is being duplicated
+            # @return [Object] the converted value
             define_method :convert_value do |val, duping = false| #:nodoc:
               case val
               when self.class
@@ -57,9 +91,14 @@ module SnakyHash
               end
             end
 
-            # converts a camel_cased string to a underscore string
-            # subs spaces with underscores, strips whitespace
-            # Same way ActiveSupport does string.underscore
+            # Converts a string to underscore case
+            #
+            # @param str [String, #to_s] the string to convert
+            # @return [String] the underscored string
+            # @example
+            #   underscore_string("CamelCase")  #=> "camel_case"
+            #   underscore_string("API::V1")    #=> "api/v1"
+            # @note This is the same as ActiveSupport's String#underscore
             define_method :underscore_string do |str|
               str.to_s.strip.
                 tr(" ", "_").
