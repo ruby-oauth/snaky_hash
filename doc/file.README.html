@@ -407,21 +407,21 @@ This is also not a bug, though if you need different behavior, there is a soluti
 <p>You can write your own arbitrary extensions:</p>
 
 <ul>
-  <li>hash load extensions operate on the hash, and nested hashes
+  <li>“Hash Load” extensions operate on the hash, and nested hashes
     <ul>
-      <li>use <code>::load_hash_extensions.add(:extension_name) {}</code>
+      <li>use <code>::load_hash_extensions.add(:extension_name) { |hash| }</code>
 </li>
     </ul>
   </li>
-  <li>load extensions operate on the values, and nested hash values, if any
+  <li>“Load” extensions operate on the values, and nested hash’s values, if any
     <ul>
-      <li>use <code>::load_extensions.add(:extension_name) {}</code>
+      <li>use <code>::load_extensions.add(:extension_name) { |value| }</code>
 </li>
     </ul>
   </li>
-  <li>dump extensions operate on the values, and nested hash values, if any
+  <li>“Dump” extensions operate on the values, and nested hash’s values, if any
     <ul>
-      <li>use <code>::dump_extensions.add(:extension_name) {}</code>
+      <li>use <code>::dump_extensions.add(:extension_name) { |value| }</code>
 </li>
     </ul>
   </li>
@@ -460,15 +460,15 @@ hydrated = MyExtSnakedHash.load(dump) # =&gt; {1 =&gt; &quot;a&quot;, &quot;0&qu
 hydrated.class # =&gt; MyExtSnakedHash
 hydrated[&quot;1&quot;] # =&gt; nil
 hydrated[1] # =&gt; &quot;a&quot;
-hydrated[&quot;2&quot;] # =&gt; nil
-hydrated[2] # =&gt; 4
 hydrated[&quot;0&quot;] # =&gt; 4
 hydrated[0] # =&gt; nil
 hydrated.very_fine_hat # =&gt; {3 =&gt; &quot;v&quot;, 5 =&gt; 7, very_fine_hat: &quot;feathers&quot;}
 hydrated.very_fine_hat.very_fine_hat # =&gt; &quot;feathers&quot;
-hydrated.very_fine_hat[:very_fine_hat] # =&gt; &#39;Feathers&#39;
-hydrated.very_fine_hat[&quot;very_fine_hat&quot;] # =&gt; &#39;Feathers&#39;
+hydrated.very_fine_hat[:very_fine_hat] # =&gt; &#39;feathers&#39;
+hydrated.very_fine_hat[&quot;very_fine_hat&quot;] # =&gt; &#39;feathers&#39;
 </code></pre>
+
+<p>See the specs for more examples.</p>
 
 <h3 id="stranger-things">Stranger Things</h3>
 
@@ -624,7 +624,7 @@ CodeCov currently fails to parse the coverage upload.
 </div></div>
 
       <div id="footer">
-  Generated on Thu May 22 01:26:13 2025 by
+  Generated on Thu May 22 01:51:49 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>

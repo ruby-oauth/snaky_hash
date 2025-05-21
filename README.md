@@ -193,12 +193,12 @@ This is also not a bug, though if you need different behavior, there is a soluti
 
 You can write your own arbitrary extensions:
 
-* hash load extensions operate on the hash, and nested hashes
-  * use `::load_hash_extensions.add(:extension_name) {}`
-* load extensions operate on the values, and nested hash values, if any
-    * use `::load_extensions.add(:extension_name) {}`
-* dump extensions operate on the values, and nested hash values, if any
-    * use `::dump_extensions.add(:extension_name) {}`
+* "Hash Load" extensions operate on the hash, and nested hashes
+  * use `::load_hash_extensions.add(:extension_name) { |hash| }`
+* "Load" extensions operate on the values, and nested hash's values, if any
+    * use `::load_extensions.add(:extension_name) { |value| }`
+* "Dump" extensions operate on the values, and nested hash's values, if any
+    * use `::dump_extensions.add(:extension_name) { |value| }`
 
 #### Example
 
@@ -234,15 +234,15 @@ hydrated = MyExtSnakedHash.load(dump) # => {1 => "a", "0": 4, very_fine_hat: {3 
 hydrated.class # => MyExtSnakedHash
 hydrated["1"] # => nil
 hydrated[1] # => "a"
-hydrated["2"] # => nil
-hydrated[2] # => 4
 hydrated["0"] # => 4
 hydrated[0] # => nil
 hydrated.very_fine_hat # => {3 => "v", 5 => 7, very_fine_hat: "feathers"}
 hydrated.very_fine_hat.very_fine_hat # => "feathers"
-hydrated.very_fine_hat[:very_fine_hat] # => 'Feathers'
-hydrated.very_fine_hat["very_fine_hat"] # => 'Feathers'
+hydrated.very_fine_hat[:very_fine_hat] # => 'feathers'
+hydrated.very_fine_hat["very_fine_hat"] # => 'feathers'
 ```
+
+See the specs for more examples.
 
 ### Stranger Things
 
