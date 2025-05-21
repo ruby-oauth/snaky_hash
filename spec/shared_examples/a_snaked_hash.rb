@@ -107,6 +107,7 @@ RSpec.shared_examples_for "a snaked hash" do
   end
 
   it "does not transform non-Symbolizable keys" do
+    skip("Hashie v5 is the oldest version of hashie that works with non-symbolizable keys") unless defined?(Hashie::VERSION) && Gem::Version.new(Hashie::VERSION) >= Gem::Version.new("5.0.0")
     expect(subject[4]).to eq("not symbolizable")
     expect(subject[:"4"]).to be_nil
     expect(subject["4"]).to be_nil

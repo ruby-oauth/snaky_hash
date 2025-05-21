@@ -43,7 +43,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.2.0"
 
-  spec.metadata["homepage_uri"] = "https://#{spec.name.tr('_', '-')}.galtzo.com/"
+  spec.metadata["homepage_uri"] = "https://#{spec.name.tr("_", "-")}.galtzo.com/"
   # Yes, GitHub/Microsoft is a disgusting monopoly, but GH stars have value :(
   spec.metadata["source_code_uri"] = "#{gh_mirror}/releases/tag//v#{spec.version}"
   spec.metadata["changelog_uri"] = "#{gl_homepage}/-/blob/v#{spec.version}/CHANGELOG.md"

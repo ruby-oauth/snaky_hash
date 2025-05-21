@@ -2,7 +2,7 @@
 
 RSpec.shared_context "base hash" do
   let(:base_hash) do
-    {
+    bh = {
       "varOne" => 1,
       "two" => 2,
       :three => 3,
@@ -24,7 +24,8 @@ RSpec.shared_context "base hash" do
       "spaced Key" => "When would this happen?",
       "trailing spaces " => "better safe than sorry",
       "extra   spaces" => "hopefully this never happens",
-      4 => "not symbolizable",
     }
+    # Hashie v5 is the oldest version of hashie that works with non-symbolizable keys
+    bh.merge!(4 => "not symbolizable") if defined?(Hashie::VERSION) && Gem::Version.new(Hashie::VERSION) >= Gem::Version.new("5.0.0")
   end
 end
