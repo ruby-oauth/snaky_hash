@@ -80,7 +80,9 @@ module SnakyHash
     end
 
     def load_hash(hash)
-      hash.transform_values do |value|
+      # The hash will be a raw hash, not a hash of this class.
+      # So first we make it a hash of this class.
+      self[hash].transform_values do |value|
         load_value(value)
       end
     end

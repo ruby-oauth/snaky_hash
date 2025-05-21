@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 - Gemspec metadata updates (@pboling)
 - Documentation updates (@pboling)
 - CI covering all code, and all key versions of runtime dependencies (@pboling)
+- [gh2](https://github.com/oauth-xx/snaky_hash/pull/2) - Serializer option (@pboling)
 ### Changed
 ### Fixed
 ### Removed
