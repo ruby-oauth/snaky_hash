@@ -5,6 +5,7 @@ ENV["RACK_ENV"] = "test"
 
 # Third Party Libraries
 require "rspec/block_is_expected"
+require "rspec/pending_for"
 require "version_gem/ruby"
 require "version_gem/rspec"
 
