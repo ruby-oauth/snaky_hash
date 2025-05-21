@@ -57,7 +57,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><h1 id="snakyhash">SnakyHash</h1>
+      <div id="content"><div id='filecontents'><h1 id="-snakyhash">🐍 SnakyHash</h1>
 
 <p><a href="https://rubygems.org/gems/snaky_hash"><img src="https://img.shields.io/gem/v/snaky_hash.svg" alt="Version"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-259D6C.svg" alt="License: MIT"></a> <a href="https://rubygems.org/gems/snaky_hash"><img src="https://img.shields.io/gem/rd/snaky_hash.svg" alt="Downloads Rank"></a> <a href="https://www.codetriage.com/oauth-xx/snaky_hash"><img src="https://www.codetriage.com/oauth-xx/snaky_hash/badges/users.svg" alt="Open Source Helpers"></a> <a href="https://depfu.com/github/oauth-xx/snaky_hash?project_id=63073"><img src="https://badges.depfu.com/badges/7019dcf43672ba8c0e77e7fdd1063398/count.svg" alt="Depfu"></a> <a href="https://coveralls.io/github/oauth-xx/snaky_hash?branch=main"><img src="https://coveralls.io/repos/github/oauth-xx/snaky_hash/badge.svg?branch=main" alt="Coveralls Test Coverage"></a> <a href="https://qlty.sh/gh/oauth-xx/projects/snaky_hash"><img src="https://qlty.sh/badges/84e960b2-4ed2-4b47-9913-02c32680ec98/test_coverage.svg" alt="QLTY Test Coverage"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/heads.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/heads.yml/badge.svg" alt="CI Heads"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/current-runtime-heads.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/current-runtime-heads.yml/badge.svg" alt="CI Runtime Dependencies @ HEAD"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/current.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/current.yml/badge.svg" alt="CI Current"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/truffle.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/truffle.yml/badge.svg" alt="CI Truffle Ruby"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/jruby.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/jruby.yml/badge.svg" alt="CI JRuby"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/supported.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/supported.yml/badge.svg" alt="CI Supported"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/legacy.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/legacy.yml/badge.svg" alt="CI Legacy"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/unsupported.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/unsupported.yml/badge.svg" alt="CI Unsupported"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/ancient.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/ancient.yml/badge.svg" alt="CI Ancient"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/coverage.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/coverage.yml/badge.svg" alt="CI Test Coverage"></a> <a href="https://github.com/oauth-xx/snaky_hash/actions/workflows/style.yml"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/style.yml/badge.svg" alt="CI Style"></a> <a href="https://github.com/oauth-xx/snaky_hash/security/code-scanning"><img src="https://github.com/oauth-xx/snaky_hash/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL"></a></p>
 
@@ -65,14 +65,22 @@
 
 <p><a href="https://liberapay.com/pboling/donate"><img src="https://img.shields.io/liberapay/goal/pboling.svg?logo=liberapay" alt="Liberapay Goal Progress"></a> <a href="https://github.com/sponsors/pboling"><img src="https://img.shields.io/badge/Sponsor_Me!-pboling.svg?style=social&amp;logo=github" alt="Sponsor Me on Github"></a> <a href="https://www.buymeacoffee.com/pboling"><img src="https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-yellow.svg?style=flat" alt="Buy me a coffee"></a> <a href="https://polar.sh/pboling"><img src="https://img.shields.io/badge/polar-donate-yellow.svg" alt="Donate on Polar"></a> <a href="https://ko-fi.com/O5O86SNP4"><img src="https://img.shields.io/badge/a_more_different_coffee-%E2%9C%93-yellow.svg" alt="Donate to my FLOSS or refugee efforts at ko-fi.com"></a> <a href="https://patreon.com/galtzo"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Donate to my FLOSS or refugee efforts using Patreon"></a></p>
 
-<p>This library is similar in purpose to the HashWithIndifferentAccess that is famously used in Rails.</p>
+<p>This library is similar in purpose to the HashWithIndifferentAccess that is famously used in Rails, but does a lot more.</p>
 
 <p>This gem is used by <code>oauth</code> and <code>oauth2</code> gems to normalize hash keys to <code>snake_case</code> and lookups,<br>
 and provide a nice psuedo-object interface.</p>
 
-<p>It can be thought of as a mashup, with upgrades, to the <code>Rash</code> (specifically the <a href="https://github.com/shishi/rash_alt"><code>rash_alt</code></a> flavor), which is a special <code>Mash</code>, made popular by the <code>hashie</code> gem, and the <code>serialized_hashie</code> <a href="https://github.com/krystal/serialized-hashie">gem by krystal</a>.</p>
+<p>It can be thought of as a mashup of:</p>
 
-<p>Classes that include <code>SnakyHash::Snake</code> should inherit from <code>Hashie::Mash</code>.</p>
+<ul>
+  <li>
+<code>Rash</code> (specifically the <a href="https://github.com/shishi/rash_alt"><code>rash_alt</code></a> flavor), which is a special <code>Mash</code>, made popular by the <code>hashie</code> gem, and</li>
+  <li>
+<code>serialized_hashie</code> <a href="https://github.com/krystal/serialized-hashie">gem by krystal</a>
+</li>
+</ul>
+
+<p>Classes that <code>include SnakyHash::Snake.new</code> should inherit from <code>Hashie::Mash</code>.</p>
 
 <h2 id="new-for-v202-serialization-support">New for v2.0.2: Serialization Support</h2>
 
@@ -86,6 +94,8 @@ class MyStringKeyedHash &lt; Hashie::Mash
   )
 end
 </code></pre>
+
+<p>✨ Also new dump &amp; load plugin extensions to control the way your data is dumped and loaded.</p>
 
 <table>
   <thead>
@@ -400,7 +410,7 @@ That is indeed the point of this library, so not a bug.</p>
 
 <p>Note that the key <code>2</code> changed to <code>"2"</code> (because JSON keys are strings).<br>
 When the JSON dump was reloaded it did not know to restore it as <code>2</code> instead of <code>"2"</code>.<br>
-This is also not a bug, though if you need different behavior, there is a solution in the next section.</p>
+This is also not a bug, though if you need different behavior, there is a solution in the <a href="#extensions">next section</a>.</p>
 
 <h3 id="extensions">Extensions</h3>
 
@@ -624,7 +634,7 @@ CodeCov currently fails to parse the coverage upload.
 </div></div>
 
       <div id="footer">
-  Generated on Thu May 22 01:51:49 2025 by
+  Generated on Thu May 22 02:24:19 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>

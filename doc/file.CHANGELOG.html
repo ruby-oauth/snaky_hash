@@ -63,8 +63,14 @@
 <p>The format (since v2) is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog v1</a>,<br>
 and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning v2</a>.</p>
 
-<h2 id="unreleased"><a href="https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.1...main">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.2...main">Unreleased</a></h2>
 <h3 id="added">Added</h3>
+<h3 id="changed">Changed</h3>
+<h3 id="fixed">Fixed</h3>
+<h3 id="removed">Removed</h3>
+
+<h2 id="202---2025-05-21-tag">[2.0.2] - 2025-05-21 (<a href="https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v2.0.2">tag</a>)</h2>
+<h3 id="added-1">Added</h3>
 <ul>
   <li>Gem is signed by 20-year cert (@pboling)
     <ul>
@@ -73,18 +79,22 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
   </li>
   <li>Gemspec metadata updates (@pboling)</li>
   <li>Documentation updates (@pboling)</li>
-  <li>CI covering all code, and all key versions of runtime dependencies (@pboling)</li>
-  <li>
-<a href="https://github.com/oauth-xx/snaky_hash/pull/2">gh2</a> - Serializer option (@pboling)
-    <h3 id="changed">Changed</h3>
-    <h3 id="fixed">Fixed</h3>
-    <h3 id="removed">Removed</h3>
+  <li>CI covering all code, and all key versions of runtime dependencies (@pboling)
+    <ul>
+      <li>Including Hashie v0, v1, v2, v3, v4, v5, and HEAD</li>
+    </ul>
   </li>
+  <li>
+<a href="https://github.com/oauth-xx/snaky_hash/pull/2">gh2</a> - Serializer option (@pboling)</li>
+  <li>
+<a href="https://github.com/oauth-xx/snaky_hash/pull/3">gh3</a> - Serializer Extensions (@pboling)</li>
+  <li>Documentation site at <a href="https://snaky-hash.galtzo.com">snaky-hash.galtzo.com</a>
+</li>
 </ul>
 
 <h2 id="201---2022-09-23-tag">
 <a href="https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.0...v2.0.1">2.0.1</a> - 2022-09-23 (<a href="https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v2.0.1">tag</a>)</h2>
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 <ul>
   <li>Certificate for signing gem releases (@pboling)</li>
   <li>Gemspec metadata (@pboling)
@@ -109,7 +119,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 include SnakyHash::Snake.new(key_type: :string) # or :symbol
 end
 </code></pre>
-    <h3 id="added-2">Added</h3>
+    <h3 id="added-3">Added</h3>
   </li>
   <li>
 <code>SnakyHash::StringKeyed</code>: a Hashie::Mash class with snake-cased String keys</li>
@@ -119,7 +129,7 @@ end
 
 <h2 id="101---2022-08-26-tag">
 <a href="https://gitlab.com/oauth-xx/snaky_hash/-/compare/v1.0.0...v1.0.1">1.0.1</a> - 2022-08-26 (<a href="https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v1.0.1">tag</a>)</h2>
-<h3 id="added-3">Added</h3>
+<h3 id="added-4">Added</h3>
 <ul>
   <li>Missing LICENSE.txt file to release
     <h3 id="removed-1">Removed</h3>
@@ -129,7 +139,7 @@ end
 
 <h2 id="100---2022-08-26-tag">
 <a href="https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v1.0.0">1.0.0</a> - 2022-08-26 (<a href="https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v1.0.0">tag</a>)</h2>
-<h3 id="added-4">Added</h3>
+<h3 id="added-5">Added</h3>
 <ul>
   <li>Initial release</li>
 </ul>
@@ -137,7 +147,7 @@ end
 </div></div>
 
       <div id="footer">
-  Generated on Thu May 22 01:51:49 2025 by
+  Generated on Thu May 22 02:24:19 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>
