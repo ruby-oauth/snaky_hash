@@ -9,6 +9,9 @@ require "rspec/pending_for"
 require "version_gem/ruby"
 require "version_gem/rspec"
 
+# Extensions
+require_relative "ext/backports"
+
 # Library Configs
 require_relative "config/debug"
 

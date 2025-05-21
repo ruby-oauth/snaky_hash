@@ -263,6 +263,7 @@ PLATFORMS
 
 DEPENDENCIES
   appraisal!
+  backports (~> 3.25, >= 3.25.1)
   benchmark (~> 0.4)
   bundler-audit (~> 0.9.2)
   debug (>= 1.0.0)

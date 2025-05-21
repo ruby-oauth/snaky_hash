@@ -2,6 +2,6 @@
 
 source "https://rubygems.org"
 
-gemspec path: "../"
+gemspec :path => "../"
 
 eval_gemfile("modular/hashie_v2.gemfile")
