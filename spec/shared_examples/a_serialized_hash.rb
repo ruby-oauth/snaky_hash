@@ -58,7 +58,7 @@ RSpec.shared_examples_for 'a serialized hash' do
       expect(hash["hello"]).to eq "world"
     end
 
-    it "shuold create an empty Mash if the given value is nil" do
+    it "should create an empty Mash if the given value is nil" do
       hash = subject.load(nil)
       expect(hash).to be_a Hashie::Mash
       expect(hash).to be_empty
