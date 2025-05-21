@@ -11,7 +11,7 @@
   "spec/snaky_hash/bad_snake_spec.rb:3931746112": [
     [3, 16, 11, "RSpec/DescribeClass: The first argument to describe should be the class or module being tested.", 1577626599]
   ],
-  "spec/snaky_hash/snake_spec.rb:2603178792": [
+  "spec/snaky_hash/snake_spec.rb:1921604918": [
     [4, 3, 92, "RSpec/LeakyConstantDeclaration: Stub class constant instead of declaring explicitly.", 3047242215]
   ]
 }
