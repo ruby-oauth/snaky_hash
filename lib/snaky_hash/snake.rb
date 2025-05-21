@@ -57,7 +57,12 @@ module SnakyHash
           Module.new do
             case key_type
             when :string then
-              # Converts a key to a string if possible, after underscoring
+              # Converts a key to a string if it is symbolizable, after underscoring
+              #
+              # @note checks for to_sym instead of to_s, because nearly everything responds_to?(:to_s)
+              #       so respond_to?(:to_s) isn't very useful as a test, and would result in symbolizing integers
+              #       amd it also provides parity between the :symbol behavior, and the :string behavior,
+              #       regarding which keys get converted for a given version of Ruby.
               #
               # @param key [Object] the key to convert
               # @return [String, Object] the converted key or original if not convertible

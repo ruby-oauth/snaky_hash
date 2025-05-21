@@ -275,7 +275,12 @@
 110
 111
 112
-113</pre>
+113
+114
+115
+116
+117
+118</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 56</span>
@@ -284,7 +289,12 @@
   <span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_key_type'>key_type</span>
     <span class='kw'>when</span> <span class='symbol'>:string</span> <span class='kw'>then</span>
-      <span class='comment'># Converts a key to a string if possible, after underscoring
+      <span class='comment'># Converts a key to a string if it is symbolizable, after underscoring
+</span>      <span class='comment'>#
+</span>      <span class='comment'># @note checks for to_sym instead of to_s, because nearly everything responds_to?(:to_s)
+</span>      <span class='comment'>#       so respond_to?(:to_s) isn&#39;t very useful as a test, and would result in symbolizing integers
+</span>      <span class='comment'>#       amd it also provides parity between the :symbol behavior, and the :string behavior,
+</span>      <span class='comment'>#       regarding which keys get converted for a given version of Ruby.
 </span>      <span class='comment'>#
 </span>      <span class='comment'># @param key [Object] the key to convert
 </span>      <span class='comment'># @return [String, Object] the converted key or original if not convertible
@@ -348,7 +358,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu May 22 04:27:14 2025 by
+  Generated on Thu May 22 06:18:36 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>
