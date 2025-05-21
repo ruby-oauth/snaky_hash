@@ -15,20 +15,6 @@ require_relative "snaky_hash/symbol_keyed"
 module SnakyHash
   class Error < StandardError
   end
-
-  class << self
-    def load_extensions
-      @load_extensions ||= Extensions.new
-    end
-
-    def dump_extensions
-      @dump_extensions ||= Extensions.new
-    end
-
-    def load_hash_extensions
-      @load_hash_extensions ||= Extensions.new
-    end
-  end
 end
 
 SnakyHash::Version.class_eval do

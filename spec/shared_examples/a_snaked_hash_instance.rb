@@ -42,7 +42,7 @@ RSpec.shared_examples_for "a snaky hash instance" do
     merged = subject.merge Hashie::Mash.new(
       nested: {fourTimes: "a charm"},
       nested3: {helloWorld: "hi"},
-      )
+    )
 
     expect(merged.nested.four_times).to eq("a charm")
     expect(merged.nested.fourTimes).to eq("a charm")
@@ -56,7 +56,7 @@ RSpec.shared_examples_for "a snaky hash instance" do
     subject.update Hashie::Mash.new(
       nested: {fourTimes: "a charm"},
       nested3: {helloWorld: "hi"},
-      )
+    )
 
     expect(subject.nested.four_times).to eq("a charm")
     expect(subject.nested.fourTimes).to eq("a charm")
@@ -70,7 +70,7 @@ RSpec.shared_examples_for "a snaky hash instance" do
     merged = subject.merge(
       nested: {fourTimes: "work like a charm"},
       nested3: {helloWorld: "hi"},
-      )
+    )
 
     expect(merged.nested.four_times).to eq("work like a charm")
     expect(merged.nested.fourTimes).to eq("work like a charm")

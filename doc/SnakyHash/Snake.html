@@ -152,7 +152,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(key_type: :string)  &#x21d2; Snake </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(key_type: :string, serializer: false)  &#x21d2; Snake </a>
     
 
     
@@ -184,7 +184,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(key_type: :string)  &#x21d2; <tt><span class='object_link'><a href="" title="SnakyHash::Snake (class)">Snake</a></span></tt> 
+    #<strong>initialize</strong>(key_type: :string, serializer: false)  &#x21d2; <tt><span class='object_link'><a href="" title="SnakyHash::Snake (class)">Snake</a></span></tt> 
   
 
   
@@ -209,14 +209,16 @@
 8
 9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 8</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>key_type:</span> <span class='symbol'>:string</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>key_type:</span> <span class='symbol'>:string</span><span class='comma'>,</span> <span class='label'>serializer:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@key_type</span> <span class='op'>=</span> <span class='id identifier rubyid_key_type'>key_type</span>
+  <span class='ivar'>@serializer</span> <span class='op'>=</span> <span class='id identifier rubyid_serializer'>serializer</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -245,17 +247,23 @@
       <pre class="lines">
 
 
-13
 14
 15
-16</pre>
+16
+17
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_conversions_module'>conversions_module</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Snake/SnakyModulizer.html" title="SnakyHash::Snake::SnakyModulizer (module)">SnakyModulizer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_mod'><span class='object_link'><a href="Snake/SnakyModulizer.html#to_mod-class_method" title="SnakyHash::Snake::SnakyModulizer.to_mod (method)">to_mod</a></span></span><span class='lparen'>(</span><span class='ivar'>@key_type</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_include'>include</span><span class='lparen'>(</span><span class='id identifier rubyid_conversions_module'>conversions_module</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@serializer</span>
+    <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../SnakyHash.html" title="SnakyHash (module)">SnakyHash</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Serializer.html" title="SnakyHash::Serializer (module)">Serializer</a></span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -267,7 +275,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 21 09:25:20 2025 by
+  Generated on Wed May 21 20:59:42 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>

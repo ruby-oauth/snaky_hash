@@ -1,6 +1,6 @@
-RSpec.shared_examples_for 'a serialized hash' do
+RSpec.shared_examples_for "a serialized hash" do
   describe ".dump" do
-    after { SnakyHash.dump_extensions.reset }
+    after { subject.dump_extensions.reset }
 
     it "returns a JSON string" do
       value = subject.dump({hello: "World"})
@@ -28,19 +28,19 @@ RSpec.shared_examples_for 'a serialized hash' do
     end
 
     it "passes through any extensions that have been added" do
-      SnakyHash.dump_extensions.add(:test) { |value| value.upcase }
+      subject.dump_extensions.add(:test) { |value| value.upcase }
       value = subject.dump({hello: "WORLD"})
       expect(value).to eq '{"hello":"WORLD"}'
     end
 
     it "works with nested hashes" do
-      SnakyHash.dump_extensions.add(:test) { |value| value.is_a?(String) ? value.upcase : value }
+      subject.dump_extensions.add(:test) { |value| value.is_a?(String) ? value.upcase : value }
       value = subject.dump({hello: "world", nested: {vegetable: "potato", more_nesting: {fruit: "banana"}}})
       expect(value).to eq '{"hello":"WORLD","nested":{"vegetable":"POTATO","more_nesting":{"fruit":"BANANA"}}}'
     end
 
     it "works with nested hashes in arrays" do
-      SnakyHash.dump_extensions.add(:test) { |value| value.is_a?(String) ? value.upcase : value }
+      subject.dump_extensions.add(:test) { |value| value.is_a?(String) ? value.upcase : value }
       value = subject.dump({hello: "world", nested: {vegetables: [{name: "potato"}, {name: "cucumber"}], more_nesting: {fruits: [{name: "banana"}, {name: "apple"}]}}})
       expect(value).to eq '{"hello":"WORLD","nested":{"vegetables":[{"name":"POTATO"},{"name":"CUCUMBER"}],"more_nesting":{"fruits":[{"name":"BANANA"},{"name":"APPLE"}]}}}'
     end
@@ -48,8 +48,8 @@ RSpec.shared_examples_for 'a serialized hash' do
 
   describe ".load" do
     after do
-      SnakyHash.load_extensions.reset
-      SnakyHash.load_hash_extensions.reset
+      subject.load_extensions.reset
+      subject.load_hash_extensions.reset
     end
 
     it "creates a Hashie::Mash from the given JSON" do
@@ -58,7 +58,7 @@ RSpec.shared_examples_for 'a serialized hash' do
       expect(hash["hello"]).to eq "world"
     end
 
-    it "should create an empty Mash if the given value is nil" do
+    it "creates an empty Mash if the given value is nil" do
       hash = subject.load(nil)
       expect(hash).to be_a Hashie::Mash
       expect(hash).to be_empty
@@ -71,28 +71,28 @@ RSpec.shared_examples_for 'a serialized hash' do
     end
 
     it "passes through any extensions that have been added" do
-      SnakyHash.load_extensions.add(:test) { |value| value.upcase }
+      subject.load_extensions.add(:test) { |value| value.upcase }
       hash = subject.load('{"hello":"world"}')
       expect(hash).to be_a Hashie::Mash
       expect(hash["hello"]).to eq "WORLD"
     end
 
     it "works with nested hashes" do
-      SnakyHash.load_extensions.add(:test) { |value| value.is_a?(String) ? value.downcase : nil }
+      subject.load_extensions.add(:test) { |value| value.is_a?(String) ? value.downcase : nil }
       hash = subject.load('{"hello":"WORLD","nested":{"vegetable":"POTATO","more_nesting":{"fruit":"BANANA"}}}')
       expect(hash).to be_a Hashie::Mash
       expect(hash).to eq({"hello" => "world", "nested" => {"vegetable" => "potato", "more_nesting" => {"fruit" => "banana"}}})
     end
 
     it "works with nested hashes in arrays" do
-      SnakyHash.load_extensions.add(:test) { |value| value.is_a?(String) ? value.downcase : nil }
+      subject.load_extensions.add(:test) { |value| value.is_a?(String) ? value.downcase : nil }
       hash = subject.load('{"num":3,"hello":"WORLD","nested":{"vegetables":[{"name":"POTATO"},{"name":"CUCUMBER"}],"more_nesting":{"fruits":[{"name":"BANANA"},{"name":"APPLE"}]}}}')
       expect(hash).to be_a Hashie::Mash
       expect(hash).to eq({"num" => nil, "hello" => "world", "nested" => {"vegetables" => [{"name" => "potato"}, {"name" => "cucumber"}], "more_nesting" => {"fruits" => [{"name" => "banana"}, {"name" => "apple"}]}}})
     end
 
     it "is unable to upcase keys, because instantiation of a SnakyHash downcases keys" do
-      SnakyHash.load_hash_extensions.add(:test) { |value|
+      subject.load_hash_extensions.add(:test) { |value|
         if value.is_a?(Hash)
           value.transform_keys(&:upcase)
         else
@@ -105,7 +105,7 @@ RSpec.shared_examples_for 'a serialized hash' do
     end
 
     it "passes through hashes through their own extensions" do
-      SnakyHash.load_hash_extensions.add(:test) { |value|
+      subject.load_hash_extensions.add(:test) { |value|
         if value.is_a?(Hash)
           value.transform_keys(&:next)
         else
@@ -117,8 +117,8 @@ RSpec.shared_examples_for 'a serialized hash' do
       expect(hash).to eq({"some_hash" => {"namf" => "Michael"}})
     end
 
-    it "passes hashses through their own extension and return non-hash values properly" do
-      SnakyHash.load_hash_extensions.add(:test) { |value|
+    it "passes hashes through their own extension and return non-hash values properly" do
+      subject.load_hash_extensions.add(:test) { |value|
         if value.is_a?(Hash)
           value.key?("name") ? value["name"] : value
         else
