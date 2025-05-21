@@ -26,6 +26,7 @@ RSpec.shared_context "base hash" do
       "extra   spaces" => "hopefully this never happens",
     }
     # Hashie v5 is the oldest version of hashie that works with non-symbolizable keys
-    bh.merge!(4 => "not symbolizable") if defined?(Hashie::VERSION) && Gem::Version.new(Hashie::VERSION) >= Gem::Version.new("5.0.0")
+    bh[4] = "not symbolizable" if defined?(Hashie::VERSION) && Gem::Version.new(Hashie::VERSION) >= Gem::Version.new("5.0.0")
+    bh
   end
 end

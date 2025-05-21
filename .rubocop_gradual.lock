@@ -8,7 +8,7 @@
   "snaky_hash.gemspec:3697348532": [
     [4, 23, 12, "Gemspec/RubyVersionGlobalsUsage: Do not use `RUBY_VERSION` in gemspec file.", 31296028]
   ],
-  "spec/shared_contexts/base_hash.rb:2552169260": [
+  "spec/shared_contexts/base_hash.rb:829438978": [
     [3, 22, 11, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3936427458]
   ],
   "spec/snaky_hash/bad_snake_spec.rb:3931746112": [
