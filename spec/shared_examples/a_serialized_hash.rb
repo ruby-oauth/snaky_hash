@@ -114,7 +114,7 @@ RSpec.shared_examples_for "a serialized hash" do
       }
       hash = subject.load('{"some_hash":{"name":"Michael"}}')
       expect(hash).to be_a Hashie::Mash
-      expect(hash).to eq({"some_hash" => {"namf" => "Michael"}})
+      expect(hash).to eq({"some_hasi" => {"namf" => "Michael"}})
     end
 
     it "passes hashes through their own extension and return non-hash values properly" do

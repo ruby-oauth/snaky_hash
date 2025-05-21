@@ -25,7 +25,7 @@ module SnakyHash
 
     def load(raw_hash)
       hash = JSON.parse(presence(raw_hash) || "{}")
-      hash = load_hash(hash)
+      hash = load_value(self[hash])
       new(hash)
     end
 
@@ -107,7 +107,7 @@ module SnakyHash
     def load_hash(hash)
       # The hash will be a raw hash, not a hash of this class.
       # So first we make it a hash of this class.
-      self[hash].transform_values do |value|
+      hash.transform_values do |value|
         load_value(value)
       end
     end

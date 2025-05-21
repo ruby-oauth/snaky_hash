@@ -67,7 +67,7 @@
 
 <p>This library is similar in purpose to the HashWithIndifferentAccess that is famously used in Rails.</p>
 
-<p>This gem is used by <code>oauth</code>, <code>oauth2</code>, and other, gems to normalize hash keys to <code>snake_case</code> and lookups,<br>
+<p>This gem is used by <code>oauth</code> and <code>oauth2</code> gems to normalize hash keys to <code>snake_case</code> and lookups,<br>
 and provide a nice psuedo-object interface.</p>
 
 <p>It can be thought of as a mashup, with upgrades, to the <code>Rash</code> (specifically the <a href="https://github.com/shishi/rash_alt"><code>rash_alt</code></a> flavor), which is a special <code>Mash</code>, made popular by the <code>hashie</code> gem, and the <code>serialized_hashie</code> <a href="https://github.com/krystal/serialized-hashie">gem by krystal</a>.</p>
@@ -361,7 +361,8 @@ end
 snake = MySnakedHash.new(:a =&gt; &quot;a&quot;, &quot;b&quot; =&gt; &quot;b&quot;, 2 =&gt; 2, &quot;VeryFineHat&quot; =&gt; &quot;Feathers&quot;)
 snake.a # =&gt; &#39;a&#39;
 snake.b # =&gt; &#39;b&#39;
-snake[2] # 2
+snake[2] # =&gt; 2
+snake[&quot;2&quot;] # =&gt; nil, note that this gem only affects string / symbol keys.
 snake.very_fine_hat # =&gt; &#39;Feathers&#39;
 snake[:very_fine_hat] # =&gt; &#39;Feathers&#39;
 snake[&quot;very_fine_hat&quot;] # =&gt; &#39;Feathers&#39;
@@ -372,11 +373,109 @@ The <code>key_type</code> determines how the key is actually stored, but the has
 Note also that keys which do not respond to <code>to_sym</code>, because they don’t have a natural conversion to a Symbol,<br>
 are left as-is.</p>
 
+<h3 id="serialization">Serialization</h3>
+
+<pre class="code language-ruby"><code class="language-ruby">class MySerializedSnakedHash &lt; Hashie::Mash
+  include SnakyHash::Snake.new(
+    key_type: :symbol, # default :string
+    serializer: true,   # default: false
+  )
+end
+
+snake = MySerializedSnakedHash.new(:a =&gt; &quot;a&quot;, &quot;b&quot; =&gt; &quot;b&quot;, 2 =&gt; 2, &quot;VeryFineHat&quot; =&gt; &quot;Feathers&quot;) # =&gt; {a: &quot;a&quot;, b: &quot;b&quot;, 2 =&gt; 2, very_fine_hat: &quot;Feathers&quot;}
+dump = MySerializedSnakedHash.dump(snake) # =&gt; &quot;{\&quot;a\&quot;:\&quot;a\&quot;,\&quot;b\&quot;:\&quot;b\&quot;,\&quot;2\&quot;:2,\&quot;very_fine_hat\&quot;:\&quot;Feathers\&quot;}&quot;
+hydrated = MySerializedSnakedHash.load(dump) # =&gt; {a: &quot;a&quot;, b: &quot;b&quot;, &quot;2&quot;: 2, very_fine_hat: &quot;Feathers&quot;}
+hydrated.class # =&gt; MySerializedSnakedHash
+hydrated.a # =&gt; &#39;a&#39;
+hydrated.b # =&gt; &#39;b&#39;
+hydrated[2] # =&gt; nil # NOTE: this is the opposite of snake[2] =&gt; 2
+hydrated[&quot;2&quot;] # =&gt; 2 # NOTE: this is the opposite of snake[&quot;2&quot;] =&gt; nil
+hydrated.very_fine_hat # =&gt; &#39;Feathers&#39;
+hydrated[:very_fine_hat] # =&gt; &#39;Feathers&#39;
+hydrated[&quot;very_fine_hat&quot;] # =&gt; &#39;Feathers&#39;
+</code></pre>
+
+<p>Note that the key <code>VeryFineHat</code> changed to <code>very_fine_hat</code>.<br>
+That is indeed the point of this library, so not a bug.</p>
+
+<p>Note that the key <code>2</code> changed to <code>"2"</code> (because JSON keys are strings).<br>
+When the JSON dump was reloaded it did not know to restore it as <code>2</code> instead of <code>"2"</code>.<br>
+This is also not a bug, though if you need different behavior, there is a solution in the next section.</p>
+
+<h3 id="extensions">Extensions</h3>
+
+<p>You can write your own arbitrary extensions:</p>
+
+<ul>
+  <li>hash load extensions operate on the hash, and nested hashes
+    <ul>
+      <li>use <code>::load_hash_extensions.add(:extension_name) {}</code>
+</li>
+    </ul>
+  </li>
+  <li>load extensions operate on the values, and nested hash values, if any
+    <ul>
+      <li>use <code>::load_extensions.add(:extension_name) {}</code>
+</li>
+    </ul>
+  </li>
+  <li>dump extensions operate on the values, and nested hash values, if any
+    <ul>
+      <li>use <code>::dump_extensions.add(:extension_name) {}</code>
+</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="example">Example</h4>
+
+<p>Let’s say I want all integer-like keys, except 0, to be integer keys,<br>
+while 0 converts to, and stays, a string forever.</p>
+
+<pre class="code language-ruby"><code class="language-ruby">class MyExtSnakedHash &lt; Hashie::Mash
+  include SnakyHash::Snake.new(
+    key_type: :symbol, # default :string
+    serializer: true,   # default: false
+  )
+end
+
+MyExtSnakedHash.load_hash_extensions.add(:non_zero_keys_to_int) do |value|
+  if value.is_a?(Hash)
+    value.transform_keys do |key|
+      key_int = key.to_s.to_i
+      if key_int &gt; 0
+        key_int
+      else
+        key
+      end
+    end
+  else
+    value
+  end
+end
+
+snake = MyExtSnakedHash.new(1 =&gt; &quot;a&quot;, 0 =&gt; 4, &quot;VeryFineHat&quot; =&gt; {3 =&gt; &quot;v&quot;, 5 =&gt; 7, :very_fine_hat =&gt; &quot;feathers&quot;}) # =&gt; {1 =&gt; &quot;a&quot;, 0 =&gt; 4, very_fine_hat: {3 =&gt; &quot;v&quot;, 5 =&gt; 7, very_fine_hat: &quot;feathers&quot;}}
+dump = MyExtSnakedHash.dump(snake) # =&gt; &quot;{\&quot;1\&quot;:\&quot;a\&quot;,\&quot;0\&quot;:4,\&quot;very_fine_hat\&quot;:{\&quot;3\&quot;:\&quot;v\&quot;,\&quot;5\&quot;:7,\&quot;very_fine_hat\&quot;:\&quot;feathers\&quot;}}&quot;
+hydrated = MyExtSnakedHash.load(dump) # =&gt; {1 =&gt; &quot;a&quot;, &quot;0&quot;: 4, very_fine_hat: {3 =&gt; &quot;v&quot;, 5 =&gt; 7, very_fine_hat: &quot;feathers&quot;}}
+hydrated.class # =&gt; MyExtSnakedHash
+hydrated[&quot;1&quot;] # =&gt; nil
+hydrated[1] # =&gt; &quot;a&quot;
+hydrated[&quot;2&quot;] # =&gt; nil
+hydrated[2] # =&gt; 4
+hydrated[&quot;0&quot;] # =&gt; 4
+hydrated[0] # =&gt; nil
+hydrated.very_fine_hat # =&gt; {3 =&gt; &quot;v&quot;, 5 =&gt; 7, very_fine_hat: &quot;feathers&quot;}
+hydrated.very_fine_hat.very_fine_hat # =&gt; &quot;feathers&quot;
+hydrated.very_fine_hat[:very_fine_hat] # =&gt; &#39;Feathers&#39;
+hydrated.very_fine_hat[&quot;very_fine_hat&quot;] # =&gt; &#39;Feathers&#39;
+</code></pre>
+
 <h3 id="stranger-things">Stranger Things</h3>
 
 <p>I don’t recommend using these features… but they exist (for now).<br>
 You can still access the original un-snaked camel keys.<br>
-And through them you can even use un-snaked camel methods.</p>
+And through them you can even use un-snaked camel methods.<br>
+But don’t.</p>
 
 <pre class="code language-ruby"><code class="language-ruby">snake.key?(&quot;VeryFineHat&quot;) # =&gt; true
 snake[&quot;VeryFineHat&quot;] # =&gt; &#39;Feathers&#39;
@@ -525,7 +624,7 @@ CodeCov currently fails to parse the coverage upload.
 </div></div>
 
       <div id="footer">
-  Generated on Thu May 22 00:16:01 2025 by
+  Generated on Thu May 22 01:26:13 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>
