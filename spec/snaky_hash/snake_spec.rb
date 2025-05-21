@@ -5,11 +5,13 @@ RSpec.describe SnakyHash::Snake do
     include SnakyHash::Snake.new(key_type: :string)
   end
 
-  subject do
+  subject(:instance) do
     TheSnakedHash.new(base_hash)
   end
 
-  it_behaves_like "a snaked hash"
+  include_context "base hash"
+
+  it_behaves_like "a snaky hash instance"
 
   it "returns a SnakyHash::Snake from a snake + snake merge" do
     a = TheSnakedHash.new("asd" => "asd")

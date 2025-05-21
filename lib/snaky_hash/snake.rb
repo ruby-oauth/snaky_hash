@@ -5,14 +5,16 @@
 # include Hashie::Extensions::Mash::SymbolizeKeys
 module SnakyHash
   class Snake < Module
-    def initialize(key_type: :string)
+    def initialize(key_type: :string, serializer: false)
       super()
       @key_type = key_type
+      @serializer = serializer
     end
 
     def included(base)
       conversions_module = SnakyModulizer.to_mod(@key_type)
       base.include(conversions_module)
+      base.extend(SnakyHash::Serializer) if @serializer
     end
 
     module SnakyModulizer

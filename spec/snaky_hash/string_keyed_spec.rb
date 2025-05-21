@@ -5,7 +5,9 @@ RSpec.describe SnakyHash::StringKeyed do
     described_class.new(base_hash)
   end
 
-  it_behaves_like "a snaked hash"
+  include_context "base hash"
+
+  it_behaves_like "a snaky hash instance"
 
   it "can transform keys to string" do
     skip_for(
