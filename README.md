@@ -8,6 +8,27 @@
 
 This library is similar in purpose to the HashWithIndifferentAccess that is famously used in Rails.
 
+This gem is used by `oauth`, `oauth2`, and other, gems to normalize hash keys to `snake_case` and lookups,
+and provide a nice psuedo-object interface.
+
+It can be thought of as a mashup, with upgrades, to the `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem, and the `serialized_hashie` [gem by krystal](https://github.com/krystal/serialized-hashie).
+
+Classes that include `SnakyHash::Snake` should inherit from `Hashie::Mash`.
+
+## New for v2.0.2: Serialization Support
+
+The serialization support is set to `false` by default, for backwards compatibility, but may be switched to `true` in the next major release, which will be v3. Example:
+
+```ruby
+# This class has `dump` and `load` abilities!
+class MyStringKeyedHash < Hashie::Mash
+  include SnakyHash::Snake.new(
+    key_type: :string,
+    serializer: true,
+  )
+end
+```
+
 | Federated [DVCS][💎d-in-dvcs] Repository      | Status                                                            | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
 |-----------------------------------------------|-------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
 | 🧪 [oauth-xx/snaky_hash on GitLab][📜src-gl]      | The Truth                                                         | [💚][🤝gl-issues]         | [💚][🤝gl-pulls]         | [💚][📜wiki]              | 🏀 Tiny Matrix           | ➖                            |
@@ -69,19 +90,12 @@ and are developed in tight collaboration with the oauth and oauth2 gems.
 | Works with MRI Ruby 2   | [![Ruby 2.3 Compat][💎ruby-2.3i]][🚎1-an-wf] [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎1-an-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎1-an-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎7-us-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎7-us-wf]                                                                                                                                                                                                                                    |
 | Source                  | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc]                                                                                                                                                                                                                                                         |
 | Documentation           | [![Discussion][⛳gg-discussions-img]][⛳gg-discussions] [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![HEAD on RubyDoc.info][📜docs-head-rd-img]][🚎yard-head] [![BDFL Blog][🚂bdfl-blog-img]][🚂bdfl-blog] [![Wiki][📜wiki-img]][📜wiki]                                                                                                                                                                                                  |
-| Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver]  [![FOSSA][🏘fossa-img]][🏘fossa]                                                                                                                                                                                  |
+| Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver]                                                                                                                                                                                                                    |
 | Style                   | [![Enforced Code Style Linter][💎rlts-img]][💎rlts] [![Keep-A-Changelog 1.0.0][📗keep-changelog-img]][📗keep-changelog] [![Gitmoji Commits][📌gitmoji-img]][📌gitmoji]                                                                                                                                                                                                                                                                                              |
-| Support      | [![Live Chat on Discord][✉️discord-invite-img]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]                                                                                                                                                                                                                       |
+| Support                 | [![Live Chat on Discord][✉️discord-invite-img]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]                                                                                                                                                                                                                       |
 | Enterprise Support      | [![Get help from me on Tidelift][🏙️entsup-tidelift-img]][🏙️entsup-tidelift]<br/>💡Subscribe for support guarantees covering _all_ FLOSS dependencies!<br/>💡Tidelift is part of [Sonar][🏙️entsup-tidelift-sonar]!<br/>💡Tidelift pays maintainers to maintain the software you depend on!<br/>📊`@`Pointy Haired Boss: An [enterprise support][🏙️entsup-tidelift] subscription is "[never gonna let you down][🧮kloc]", and *supports* open source maintainers! |
 | Comrade BDFL 🎖️        | [![Follow Me on LinkedIn][💖🖇linkedin-img]][💖🖇linkedin] [![Follow Me on Ruby.Social][💖🐘ruby-mast-img]][💖🐘ruby-mast] [![Follow Me on Bluesky][💖🦋bluesky-img]][💖🦋bluesky] [![Contact BDFL][🚂bdfl-contact-img]][🚂bdfl-contact] [![My technical writing][💖💁🏼‍♂️devto-img]][💖💁🏼‍♂️devto]                                                                                                                                                              |
 | `...` 💖                | [![Find Me on WellFound:][💖✌️wellfound-img]][💖✌️wellfound] [![Find Me on CrunchBase][💖💲crunchbase-img]][💖💲crunchbase] [![My LinkTree][💖🌳linktree-img]][💖🌳linktree] [![More About Me][💖💁🏼‍♂️aboutme-img]][💖💁🏼‍♂️aboutme] [🧊][💖🧊berg] [🐙][💖🐙hub]  [🛖][💖🛖hut] [🧪][💖🧪lab]                                                                                                                                                                   |
-
-This gem is used by the `oauth` and `oauth2` gems, and others, to normalize hash keys and lookups,
-and provide a nice psuedo-object interface.
-
-It has its roots in the `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem.
-
-Classes that include `SnakyHash::Snake` should inherit from `Hashie::Mash`.
 
 ## ✨ Installation
 
@@ -254,25 +268,17 @@ The gem is available as open source under the terms of
 the [MIT License][📄license] [![License: MIT][📄license-img]][📄license-ref].
 See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright-notice-explainer].
 
-[![FOSSA Status][fossa2-img])][fossa2]
-
-[fossa2]: https://app.fossa.io/projects/git%2Bgithub.com%2Foauth-xx%2Fsnaky_hash?ref=badge_large
-[fossa2-img]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Foauth-xx%2Fsnaky_hash.svg?type=large
-
 ### © Copyright
 
 <ul>
     <li>
-        2017 - 2025 Peter H. Boling, of
+        2022, 2025 Peter H. Boling, of
         <a href="https://railsbling.com">
             RailsBling.com
             <picture>
                 <img alt="Rails Bling" height="20" src="https://railsbling.com/images/logos/RailsBling-TrainLogo.svg" />
             </picture>
         </a>, and snaky_hash contributors
-    </li>
-    <li>
-        Copyright (c) 2011 - 2013 Michael Bleigh and Intridea, Inc.
     </li>
 </ul>
 
@@ -345,15 +351,15 @@ or one of the others at the head of this README.
 [👽version]: https://rubygems.org/gems/snaky_hash
 [👽versioni]: https://img.shields.io/gem/v/snaky_hash.svg
 [🔑qlty-mnt]: https://qlty.sh/gh/oauth-xx/projects/snaky_hash
-[🔑qlty-mnti♻️]: https://qlty.sh/badges/d3370c2c-8791-4202-9759-76f527f76005/maintainability.svg
+[🔑qlty-mnti♻️]: https://qlty.sh/badges/84e960b2-4ed2-4b47-9913-02c32680ec98/maintainability.svg
 [🔑qlty-cov]: https://qlty.sh/gh/oauth-xx/projects/snaky_hash
-[🔑qlty-covi♻️]: https://qlty.sh/badges/d3370c2c-8791-4202-9759-76f527f76005/test_coverage.svg
+[🔑qlty-covi♻️]: https://qlty.sh/badges/84e960b2-4ed2-4b47-9913-02c32680ec98/test_coverage.svg
 [🔑codecov]: https://codecov.io/gh/oauth-xx/snaky_hash
-[🔑codecovi♻️]: https://codecov.io/gh/oauth-xx/snaky_hash/graph/badge.svg?token=bNqSzNiuo2
+[🔑codecovi♻️]: https://codecov.io/gh/oauth-xx/snaky_hash/graph/badge.svg?token=XqaZixl4ss
 [🔑coveralls]: https://coveralls.io/github/oauth-xx/snaky_hash?branch=main
 [🔑coveralls-img]: https://coveralls.io/repos/github/oauth-xx/snaky_hash/badge.svg?branch=main
-[🔑depfu]: https://depfu.com/github/oauth-xx/snaky_hash?project_id=5884
-[🔑depfui♻️]: https://badges.depfu.com/badges/6d34dc1ba682bbdf9ae2a97848241743/count.svg
+[🔑depfu]: https://depfu.com/github/oauth-xx/snaky_hash?project_id=63073
+[🔑depfui♻️]: https://badges.depfu.com/badges/7019dcf43672ba8c0e77e7fdd1063398/count.svg
 [🖐codeQL]: https://github.com/oauth-xx/snaky_hash/security/code-scanning
 [🖐codeQL-img]: https://github.com/oauth-xx/snaky_hash/actions/workflows/codeql-analysis.yml/badge.svg
 [🚎1-an-wf]: https://github.com/oauth-xx/snaky_hash/actions/workflows/ancient.yml
@@ -423,7 +429,7 @@ or one of the others at the head of this README.
 [🤝cb-pulls]: https://codeberg.org/oauth-xx/snaky_hash/pulls
 [🤝cb-donate]: https://donate.codeberg.org/
 [🤝contributing]: CONTRIBUTING.md
-[🔑codecov-g♻️]: https://codecov.io/gh/oauth-xx/snaky_hash/graphs/tree.svg?token=bNqSzNiuo2
+[🔑codecov-g♻️]: https://codecov.io/gh/oauth-xx/snaky_hash/graphs/tree.svg?token=XqaZixl4ss
 [🖐contrib-rocks]: https://contrib.rocks
 [🖐contributors]: https://github.com/oauth-xx/snaky_hash/graphs/contributors
 [🖐contributors-img]: https://contrib.rocks/image?repo=oauth-xx/snaky_hash
@@ -456,8 +462,17 @@ or one of the others at the head of this README.
 [💎SHA_checksums]: https://gitlab.com/oauth-xx/snaky_hash/-/tree/main/checksums
 [💎rlts]: https://github.com/rubocop-lts/rubocop-lts
 [💎rlts-img]: https://img.shields.io/badge/code_style_%26_linting-rubocop--lts-34495e.svg?plastic&logo=ruby&logoColor=white
-[🏘fossa]: https://app.fossa.io/projects/git%2Bgithub.com%2Foauth-xx%2Fsnaky_hash?ref=badge_shield
-[🏘fossa-img]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Foauth-xx%2Fsnaky_hash.svg?type=shield
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
 [✉️discord-invite]: https://discord.gg/3qme4XHNKN
 [✉️discord-invite-img]: https://img.shields.io/discord/1373797679469170758?style=for-the-badge
+
+<details>
+  <summary>Deprecated Badges</summary>
+
+CodeCov currently fails to parse the coverage upload.
+
+[![CodeCov Test Coverage][🔑codecovi♻️]][🔑codecov]
+
+[![Coverage Graph][🔑codecov-g♻️]][🔑codecov]
+
+</details>

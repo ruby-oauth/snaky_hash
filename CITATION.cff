@@ -16,7 +16,7 @@ authors:
 identifiers:
   - type: url
     value: 'https://github.com/oauth-xx/snaky_hash'
-    description: oath2
+    description: snaky_hash
 repository-code: 'https://github.com/oauth-xx/snaky_hash'
 abstract: >-
   snaky_hash
