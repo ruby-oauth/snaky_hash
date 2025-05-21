@@ -92,6 +92,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("hashie", ">= 0.1.0", "< 6") # Hashie::Mash was introduced in v0.1.0
   spec.add_dependency("version_gem", ">= 1.1.8", "< 3")   # Ruby >= 2.2
 
+  spec.add_development_dependency("backports", "~> 3.25", ">= 3.25.1")  # ruby >= 0
   spec.add_development_dependency("rake", "~> 13.0")                    # ruby >= 2.2
   spec.add_development_dependency("rspec", "~> 3.13")                   # ruby >= 0
   spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # ruby >= 1.8.7

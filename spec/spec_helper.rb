@@ -9,6 +9,9 @@ require "rspec/pending_for"
 require "version_gem/ruby"
 require "version_gem/rspec"
 
+# Extensions
+require_relative "ext/backports"
+
 # Library Configs
 require_relative "config/debug"
 
@@ -16,7 +19,12 @@ require_relative "config/debug"
 require_relative "config/rspec/rspec_core"
 
 require_relative "shared_contexts/base_hash"
+require_relative "shared_contexts/with_extended_serializer"
+require_relative "shared_contexts/with_serializer"
+require_relative "shared_contexts/without_serializer"
+require_relative "shared_examples/a_serialized_hash"
 require_relative "shared_examples/a_snaked_hash"
+require_relative "shared_examples/a_snaked_hash_instance"
 
 # NOTE: Gemfiles for older rubies won't have kettle-soup-cover.
 #       The rescue LoadError handles that scenario.

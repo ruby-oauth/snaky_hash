@@ -101,7 +101,23 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>serialized is being introduced as an always disabled option for backwards compatibility.<br />
+In snaky_hash v3 it will default to true.<br />
+If you want to start using it immediately, reopen this class and add the Serializer module:</p>
 
+<p>SnakyHash::StringKeyed.class_eval do<br />
+    extend SnakyHash::Serializer<br />
+  end</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -114,7 +130,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 21 09:25:20 2025 by
+  Generated on Wed May 21 22:09:23 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>
