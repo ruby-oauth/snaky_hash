@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+# A shared context that provides a base hash with various key formats for testing
+#
+# @example Using the shared context
+#   RSpec.describe MyClass do
+#     include_context "base hash"
+#     it "has data" do
+#       expect(base_hash["varOne"]).to eq(1)
+#     end
+#   end
 RSpec.shared_context "base hash" do
   let(:base_hash) do
     bh = {

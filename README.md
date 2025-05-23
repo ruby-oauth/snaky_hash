@@ -14,7 +14,7 @@ and provide a nice psuedo-object interface.
 It can be thought of as a mashup of:
 
 * `Rash` (specifically the [`rash_alt`](https://github.com/shishi/rash_alt) flavor), which is a special `Mash`, made popular by the `hashie` gem, and
-* `serialized_hashie` [gem by krystal](https://github.com/krystal/serialized-hashie)
+* `serialized_hashie` [gem by krystal](https://github.com/krystal/serialized-hashie), rewritten, with some behavior changes
 
 Classes that `include SnakyHash::Snake.new` should inherit from `Hashie::Mash`.
 
@@ -43,6 +43,17 @@ If you want to start using the serializer immediately, reopen the `SnakyHash::St
 ```ruby
 SnakyHash::StringKeyed.class_eval do
   extend SnakyHash::Serializer
+end
+```
+
+or you can create a custom class
+
+```ruby
+class MyHash < Hashie::Mash
+  include SnakyHash::Snake.new(key_type: :string, serializer: true)
+  # Which is the same as:
+  # include SnakyHash::Snake.new(key_type: :string)
+  # extend SnakyHash::Serializer
 end
 ```
 
@@ -212,71 +223,95 @@ This is also not a bug, though if you need different behavior, there is a soluti
 
 You can write your own arbitrary extensions:
 
-* "Hash Load" extensions operate on the hash, and nested hashes
+* "Hash Load" extensions operate on the hash and nested hashes
   * use `::load_hash_extensions.add(:extension_name) { |hash| }`
-* "Load" extensions operate on the values, and nested hash's values, if any
-    * use `::load_extensions.add(:extension_name) { |value| }`
-* "Dump" extensions operate on the values, and nested hash's values, if any
-    * use `::dump_extensions.add(:extension_name) { |value| }`
+  * since v2.0.2, bugs fixed in v2.0.3
+* "Value Load" extensions operate on the values, and nested hashes' values, if any
+  * use `::load_value_extensions.add(:extension_name) { |value| }`
+  * since v2.0.2, bugs fixed in v2.0.3
+* "Hash Dump" extensions operate on the hash and nested hashes
+  * use `::dump_hash_extensions.add(:extension_name) { |value| }`
+  * since v2.0.3
+* "Value Dump" extensions operate on the values, and nested hashes' values, if any
+  * use `::dump_value_extensions.add(:extension_name) { |value| }`
+  * since v2.0.2, bugs fixed in v2.0.3
 
 #### Example
 
-Let's say I want all integer-like keys, except 0, to be integer keys,
-while 0 converts to, and stays, a string forever.
+Let's say I want to really smash up my hash and make it more food-like.
 
 ```ruby
 class MyExtSnakedHash < Hashie::Mash
   include SnakyHash::Snake.new(
     key_type: :symbol, # default :string
-    serializer: true,   # default: false
+    serializer: true,  # default: false
   )
 end
 
-MyExtSnakedHash.load_hash_extensions.add(:non_zero_keys_to_int) do |value|
-  if value.is_a?(Hash)
-    value.transform_keys do |key|
-      key_int = key.to_s.to_i
-      if key_int > 0
-        key_int
-      else
-        key
-      end
-    end
-  else
-    value
+# We could swap all values with indexed apples (obliteraating nested data!)
+MyExtSnakedHash.dump_hash_extensions.add(:to_apple) do |value|
+  num = 0
+  value.transform_values do |_key|
+    key = "apple-#{num}"
+    num += 1
+    key
   end
 end
 
-snake = MyExtSnakedHash.new(1 => "a", 0 => 4, "VeryFineHat" => {3 => "v", 5 => 7, :very_fine_hat => "feathers"}) # => {1 => "a", 0 => 4, very_fine_hat: {3 => "v", 5 => 7, very_fine_hat: "feathers"}}
-dump = MyExtSnakedHash.dump(snake) # => "{\"1\":\"a\",\"0\":4,\"very_fine_hat\":{\"3\":\"v\",\"5\":7,\"very_fine_hat\":\"feathers\"}}"
-hydrated = MyExtSnakedHash.load(dump) # => {1 => "a", "0": 4, very_fine_hat: {3 => "v", 5 => 7, very_fine_hat: "feathers"}}
-hydrated.class # => MyExtSnakedHash
-hydrated["1"] # => nil
-hydrated[1] # => "a"
-hydrated["0"] # => 4
-hydrated[0] # => nil
-hydrated.very_fine_hat # => {3 => "v", 5 => 7, very_fine_hat: "feathers"}
-hydrated.very_fine_hat.very_fine_hat # => "feathers"
-hydrated.very_fine_hat[:very_fine_hat] # => 'feathers'
-hydrated.very_fine_hat["very_fine_hat"] # => 'feathers'
+# And then when loading the dump we could convert the yum to pear
+MyExtSnakedHash.load_hash_extensions.add(:apple_to_pear) do |value|
+  value.transform_keys do |key|
+    key.to_s.sub("yum", "pear")
+  end
+end
+
+# We could swap all index numbers "beet-<number>"
+MyExtSnakedHash.dump_value_extensions.add(:to_beet) do |value|
+  value.to_s.sub(/(\d+)/) { |match| "beet-#{match[0]}" }
+end
+
+# And then when loading the dump we could convert beet to corn
+MyExtSnakedHash.load_value_extensions.add(:beet_to_corn) do |value|
+  value.to_s.sub("beet", "corn")
+end
+
+snake = MyExtSnakedHash.new({"YumBread" => "b", "YumCake" => {"b" => "b"}, "YumBoba" => [1, 2, 3]})
+snake # => {yum_bread: "b", yum_cake: {b: "b"}, yum_boba: [1, 2, 3]}
+snake.yum_bread # => "b"
+snake.yum_cake # => {b: "b"}
+snake.yum_boba # => [1, 2, 3]
+dump = snake.dump
+dump # => "{\"yum_bread\":\"apple-beet-0\",\"yum_cake\":\"apple-beet-1\",\"yum_boba\":\"apple-beet-2\"}"
+hydrated = MyExtSnakedHash.load(dump)
+hydrated # => {pear_bread: "apple-corn-0", pear_cake: "apple-corn-1", pear_boba: "apple-corn-2"}
 ```
 
 See the specs for more examples.
 
-### Stranger Things
+### Bad Ideas
 
 I don't recommend using these features... but they exist (for now).
+
+<details>
+  <summary>Show me what I should *not* do!</summary>
+
 You can still access the original un-snaked camel keys.
 And through them you can even use un-snaked camel methods.
 But don't.
 
 ```ruby
+snake = SnakyHash::StringKeyed["VeryFineHat" => "Feathers"]
 snake.key?("VeryFineHat") # => true
 snake["VeryFineHat"] # => 'Feathers'
 snake.VeryFineHat # => 'Feathers', PLEASE don't do this!!!
 snake["VeryFineHat"] = "pop" # Please don't do this... you'll get a warning, and it works (for now), but no guarantees.
 # WARN -- : You are setting a key that conflicts with a built-in method MySnakedHash#VeryFineHat defined in MySnakedHash. This can cause unexpected behavior when accessing the key as a property. You can still access the key via the #[] method.
 # => "pop"
+```
+
+Since you are reading this, here's what to do instead.
+
+```ruby
 snake.very_fine_hat = "pop" # => 'pop', do this instead!!!
 snake.very_fine_hat # => 'pop'
 snake[:very_fine_hat] = "moose" # => 'moose', or do this instead!!!
@@ -284,6 +319,8 @@ snake.very_fine_hat # => 'moose'
 snake["very_fine_hat"] = "cheese" # => 'cheese', or do this instead!!!
 snake.very_fine_hat # => 'cheese'
 ```
+
+</details>
 
 ### 🚀 Release Instructions
 
@@ -553,7 +590,7 @@ or one of the others at the head of this README.
 [📌gitmoji]:https://gitmoji.dev
 [📌gitmoji-img]:https://img.shields.io/badge/gitmoji_commits-%20😜%20😍-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.119-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
+[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.130-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
 [🔐security]: SECURITY.md
 [🔐security-img]: https://img.shields.io/badge/security-policy-259D6C.svg?style=flat
 [📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year

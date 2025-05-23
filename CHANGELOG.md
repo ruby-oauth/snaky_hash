@@ -7,10 +7,31 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ## [Unreleased]
 ### Added
 ### Changed
-### Fixed
+### Deprecated
 ### Removed
+### Fixed
+### Security
 
-## [2.0.2] - 2025-05-21 ([tag][2.0.2t])
+## [2.0.3] - 2025-05-23
+- TAG: [v2.0.3][2.0.3t]
+- COVERAGE: 100.00% -- 130/130 lines in 7 files
+- BRANCH COVERAGE: 100.00% -- 37/37 branches in 7 files
+- 100.00% documented
+### Added
+- `#dump` instance method injected by `extend SnakyHash::Serializer` (@pboling)
+- `dump_hash_extensions` - new feature, analogous to `load_hash_extensions` (@pboling)
+- `dump_value_extensions` - alternate name for `dump_extensions` (@pboling)
+- `load_value_extensions` - alternate name for `load_extensions` (@pboling)
+- Clarifying documentation (@pboling)
+### Fixed
+- Serializer extensions dump and load empty values properly (@pboling)
+  - Fixed `dump_extensions`, `load_extensions`, `load_hash_extensions`
+  - Intended usage is primarily JSON, and oauth2 gem
+  - OAuth2 spec can have legitimately empty values (e.g. scopes could be empty)
+  - Previous logic was inherited from design decisions made by `serialized_hashie` gem; doesn't apply here
+
+## [2.0.2] - 2025-05-21
+- TAG: [v2.0.2][2.0.2t]
 - COVERAGE: 100.00% -- 119/119 lines in 7 files
 - BRANCH COVERAGE: 100.00% -- 35/35 branches in 7 files
 - 100.00% documented
@@ -26,7 +47,8 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 - Documentation site at [snaky-hash.galtzo.com](https://snaky-hash.galtzo.com) (@pboling)
 - 100% documented! (@pboling)
 
-## [2.0.1] - 2022-09-23 ([tag][2.0.1t])
+## [2.0.1] - 2022-09-23
+- TAG: [v2.0.1][2.0.1t]
 ### Added
 - Certificate for signing gem releases (@pboling)
 - Gemspec metadata (@pboling)
@@ -36,7 +58,8 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ### Changed
 - Gem releases are now cryptographically signed (@pboling)
 
-## [2.0.0] - 2022-08-29 ([tag][2.0.0t])
+## [2.0.0] - 2022-08-29
+- TAG: [v2.0.0][2.0.0t]
 ### Changed
 - **BREAKING**: `SnakeHash::Snake` is now a mixin, now with support for symbol or string keys
 ```ruby
@@ -48,18 +71,22 @@ end
 - `SnakyHash::StringKeyed`: a Hashie::Mash class with snake-cased String keys
 - `SnakyHash::SymbolKeyed`: a Hashie::Mash class with snake-cased Symbol keys
 
-## [1.0.1] - 2022-08-26 ([tag][1.0.1t])
+## [1.0.1] - 2022-08-26
+- TAG: [v1.0.1][1.0.1t]
 ### Added
 - Missing LICENSE.txt file to release
 ### Removed
 - Accidentally added bundler dependency (vestige of transpec process) is now removed
 
-## [1.0.0] - 2022-08-26 ([tag][1.0.0t])
+## [1.0.0] - 2022-08-26
+- TAG: [v1.0.0][1.0.0t]
 ### Added
 - Initial release
 
-[Unreleased]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.2...main
-[2.0.21]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.1...v2.0.2
+[Unreleased]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.3...main
+[2.0.3]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.2...v2.0.3
+[2.0.3t]: https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v2.0.3
+[2.0.2]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.1...v2.0.2
 [2.0.2t]: https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v2.0.2
 [2.0.1]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.0...v2.0.1
 [2.0.1t]: https://gitlab.com/oauth-xx/snaky_hash/-/releases/tag/v2.0.1
