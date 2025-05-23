@@ -181,8 +181,19 @@ module SnakyHash
       ran = load_hash_extensions.run(self[hash])
       return load_value(ran) unless ran.is_a?(::Hash)
 
-      self[ran].transform_values do |value|
+      res = self[ran].transform_values do |value|
         load_value(value)
+      end
+
+      # TODO: Drop this hack when dropping support for Ruby 2.6
+      if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.7")
+        res
+      else
+        # :nocov:
+        # In Ruby <= 2.6 Hash#transform_values returned a new vanilla Hash,
+        #   rather than a hash of the class being transformed.
+        self[res]
+        # :nocov:
       end
     end
 

@@ -14,8 +14,8 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [2.0.3] - 2025-05-23
 - TAG: [v2.0.3][2.0.3t]
-- COVERAGE: 100.00% -- 130/130 lines in 7 files
-- BRANCH COVERAGE: 100.00% -- 37/37 branches in 7 files
+-  COVERAGE: 100.00% -- 132/132 lines in 7 files
+-  BRANCH COVERAGE: 100.00% -- 38/38 branches in 7 files
 - 100.00% documented
 ### Added
 - `#dump` instance method injected by `extend SnakyHash::Serializer` (@pboling)
@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 - `load_value_extensions` - alternate name for `load_extensions` (@pboling)
 - Clarifying documentation (@pboling)
 ### Fixed
-- Serializer extensions dump and load empty values properly (@pboling)
+- [gh4](https://github.com/oauth-xx/snaky_hash/pull/4) - Serializer extensions dump and load empty values properly (@pboling)
   - Fixed `dump_extensions`, `load_extensions`, `load_hash_extensions`
   - Intended usage is primarily JSON, and oauth2 gem
   - OAuth2 spec can have legitimately empty values (e.g. scopes could be empty)
