@@ -196,23 +196,47 @@
 69
 70
 71
-72</pre>
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/snaky_hash/serializer.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_extended_mod'>to_extended_mod</span>
   <span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:load_value_extensions</span> <span class='kw'>do</span>
+      <span class='ivar'>@load_value_extensions</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../Extensions.html" title="SnakyHash::Extensions (class)">Extensions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Extensions.html#initialize-instance_method" title="SnakyHash::Extensions#initialize (method)">new</a></span></span>
+    <span class='kw'>end</span>
+
     <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:load_extensions</span> <span class='kw'>do</span>
-      <span class='ivar'>@load_extensions</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../Extensions.html" title="SnakyHash::Extensions (class)">Extensions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Extensions.html#initialize-instance_method" title="SnakyHash::Extensions#initialize (method)">new</a></span></span>
+      <span class='id identifier rubyid_load_value_extensions'>load_value_extensions</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:dump_value_extensions</span> <span class='kw'>do</span>
+      <span class='ivar'>@dump_value_extensions</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../Extensions.html" title="SnakyHash::Extensions (class)">Extensions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Extensions.html#initialize-instance_method" title="SnakyHash::Extensions#initialize (method)">new</a></span></span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:dump_extensions</span> <span class='kw'>do</span>
-      <span class='ivar'>@dump_extensions</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../Extensions.html" title="SnakyHash::Extensions (class)">Extensions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Extensions.html#initialize-instance_method" title="SnakyHash::Extensions#initialize (method)">new</a></span></span>
+      <span class='id identifier rubyid_dump_value_extensions'>dump_value_extensions</span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:load_hash_extensions</span> <span class='kw'>do</span>
       <span class='ivar'>@load_hash_extensions</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../Extensions.html" title="SnakyHash::Extensions (class)">Extensions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Extensions.html#initialize-instance_method" title="SnakyHash::Extensions#initialize (method)">new</a></span></span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:dump_hash_extensions</span> <span class='kw'>do</span>
+      <span class='ivar'>@dump_hash_extensions</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../Extensions.html" title="SnakyHash::Extensions (class)">Extensions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Extensions.html#initialize-instance_method" title="SnakyHash::Extensions#initialize (method)">new</a></span></span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -226,7 +250,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu May 22 06:18:36 2025 by
+  Generated on Fri May 23 09:32:07 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.3).
 </div>

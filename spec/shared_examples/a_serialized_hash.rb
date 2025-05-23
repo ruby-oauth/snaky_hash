@@ -1,20 +1,23 @@
 RSpec.shared_examples_for "a serialized hash" do
-  describe ".dump" do
-    after { subject.dump_extensions.reset }
+  describe "::dump" do
+    after do
+      subject.dump_value_extensions.reset
+      subject.dump_hash_extensions.reset
+    end
 
     it "returns a JSON string" do
       value = subject.dump({hello: "World"})
       expect(value).to eq '{"hello":"World"}'
     end
 
-    it "removes any nil values" do
+    it "does not remove nil values" do
       value = subject.dump({hello: "World", nilValue: nil})
-      expect(value).to eq '{"hello":"World"}'
+      expect(value).to eq "{\"hello\":\"World\",\"nil_value\":null}"
     end
 
-    it "removes empty strings" do
+    it "does not remove empty strings" do
       value = subject.dump({hello: "World", nilValue: ""})
-      expect(value).to eq '{"hello":"World"}'
+      expect(value).to eq "{\"hello\":\"World\",\"nil_value\":\"\"}"
     end
 
     it "does not remove false" do
@@ -24,7 +27,7 @@ RSpec.shared_examples_for "a serialized hash" do
 
     it "removes any empty items from top-level arrays" do
       value = subject.dump({hello: "World", array: [nil, 1, 2, "", false]})
-      expect(value).to eq '{"hello":"World","array":[1,2,false]}'
+      expect(value).to eq '{"hello":"World","array":[1,2,"",false]}'
     end
 
     it "passes through any extensions that have been added" do
@@ -46,9 +49,9 @@ RSpec.shared_examples_for "a serialized hash" do
     end
   end
 
-  describe ".load" do
+  describe "::load" do
     after do
-      subject.load_extensions.reset
+      subject.load_value_extensions.reset
       subject.load_hash_extensions.reset
     end
 
@@ -62,6 +65,24 @@ RSpec.shared_examples_for "a serialized hash" do
       hash = subject.load(nil)
       expect(hash).to be_a Hashie::Mash
       expect(hash).to be_empty
+    end
+
+    it "creates a hash with nil value" do
+      hash = subject.load('{"myCount":null}')
+      expect(hash).to be_a Hashie::Mash
+      expect(hash["myCount"]).to be_nil
+    end
+
+    it "creates a hash with empty value" do
+      hash = subject.load('{"myCount":""}')
+      expect(hash).to be_a Hashie::Mash
+      expect(hash["myCount"]).to eq("")
+    end
+
+    it "creates a hash with 0 value" do
+      hash = subject.load('{"myCount":0}')
+      expect(hash).to be_a Hashie::Mash
+      expect(hash["myCount"]).to eq(0)
     end
 
     it "creates an empty Mash if the JSON is an empty string" do

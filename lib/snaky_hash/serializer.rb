@@ -21,6 +21,7 @@ module SnakyHash
       def extended(base)
         extended_module = Modulizer.to_extended_mod
         base.extend(extended_module)
+        base.include(ConvenienceInstanceMethods)
         # :nocov:
         # This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
         unless base.instance_methods.include?(:transform_values)
@@ -45,8 +46,7 @@ module SnakyHash
     # @return [Hash] deserialized hash object
     def load(raw_hash)
       hash = JSON.parse(presence(raw_hash) || "{}")
-      hash = load_value(new(hash))
-      new(hash)
+      load_hash(new(hash))
     end
 
     # Internal module for generating extension methods
@@ -57,16 +57,28 @@ module SnakyHash
         # @return [Module] a module containing extension management methods
         def to_extended_mod
           Module.new do
+            define_method :load_value_extensions do
+              @load_value_extensions ||= Extensions.new
+            end
+
             define_method :load_extensions do
-              @load_extensions ||= Extensions.new
+              load_value_extensions
+            end
+
+            define_method :dump_value_extensions do
+              @dump_value_extensions ||= Extensions.new
             end
 
             define_method :dump_extensions do
-              @dump_extensions ||= Extensions.new
+              dump_value_extensions
             end
 
             define_method :load_hash_extensions do
               @load_hash_extensions ||= Extensions.new
+            end
+
+            define_method :dump_hash_extensions do
+              @dump_hash_extensions ||= Extensions.new
             end
           end
         end
@@ -96,6 +108,20 @@ module SnakyHash
       # :nocov:
     end
 
+    # Provides convenient instance methods for serialization
+    #
+    # @example Using convenience methods
+    #   hash = MyHash.new(key: 'value')
+    #   json = hash.dump #=> '{"key":"value"}'
+    module ConvenienceInstanceMethods
+      # Serializes the current hash instance to JSON
+      #
+      # @return [String] JSON string representation of the hash
+      def dump
+        self.class.dump(self)
+      end
+    end
+
   private
 
     # Checks if a value is blank (nil or empty string)
@@ -117,15 +143,14 @@ module SnakyHash
       blank?(value) ? nil : value
     end
 
-    # Processes a hash for dumping, transforming its values
+    # Processes a hash for dumping, transforming its keys and/or values
     #
     # @param hash [Hash] hash to process
     # @return [Hash] processed hash with transformed values
     def dump_hash(hash)
-      hash = self[hash].transform_values do |value|
+      dump_hash_extensions.run(self[hash]).transform_values do |value|
         dump_value(value)
       end
-      hash.reject { |_, v| blank?(v) }
     end
 
     # Processes a single value for dumping
@@ -134,7 +159,7 @@ module SnakyHash
     # @return [Object, nil] processed value
     def dump_value(value)
       if blank?(value)
-        return
+        return value
       end
 
       if value.is_a?(::Hash)
@@ -148,28 +173,46 @@ module SnakyHash
       dump_extensions.run(value)
     end
 
-    # Processes a hash for loading, transforming its values
+    # Processes a hash for loading, transforming its keys and/or values
     #
     # @param hash [Hash] hash to process
     # @return [Hash] processed hash with transformed values
     def load_hash(hash)
-      hash.transform_values do |value|
+      ran = load_hash_extensions.run(self[hash])
+      return load_value(ran) unless ran.is_a?(::Hash)
+
+      res = self[ran].transform_values do |value|
         load_value(value)
+      end
+
+      # TODO: Drop this hack when dropping support for Ruby 2.6
+      if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.7")
+        res
+      else
+        # :nocov:
+        # In Ruby <= 2.6 Hash#transform_values returned a new vanilla Hash,
+        #   rather than a hash of the class being transformed.
+        self[res]
+        # :nocov:
       end
     end
 
     # Processes a single value for loading
     #
     # @param value [Object] value to process
-    # @return [Object] processed value
+    # @return [Object, nil] processed value
     def load_value(value)
-      if value.is_a?(::Hash)
-        hash = load_hash_extensions.run(new(value))
-        return load_hash(new(hash)) if hash.is_a?(::Hash)
-        return load_value(hash)
+      if blank?(value)
+        return value
       end
 
-      return value.map { |v| load_value(v) } if value.is_a?(Array)
+      if value.is_a?(::Hash)
+        return load_hash(value)
+      end
+
+      if value.is_a?(::Array)
+        return value.map { |v| load_value(v) }.compact
+      end
 
       load_extensions.run(value)
     end
