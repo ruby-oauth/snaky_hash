@@ -93,8 +93,8 @@ jobs:
       - name: Upload coverage to CodeCov
         uses: codecov/codecov-action@v5
         with:
+          use_oidc: true
           fail_ci_if_error: true # optional (default = false)
-          token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true # optional (default = false)
 
       # Then PR comments
