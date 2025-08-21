@@ -37,8 +37,8 @@ Gem::Specification.new do |spec|
   gl_homepage = "https://gitlab.com/oauth-xx/snaky_hash"
   gh_mirror = "https://github.com/oauth-xx/snaky_hash"
 
-  spec.summary = "A very snaky hash"
-  spec.description = "A Hashie::Mash joint to make #snakelife better"
+  spec.summary = "🐍 A very snaky hash"
+  spec.description = "🐍 A Hashie::Mash joint to make #snakelife better"
   spec.homepage = gh_mirror
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.2.0"
