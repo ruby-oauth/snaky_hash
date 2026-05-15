@@ -1,6 +1,6 @@
 # 🐍 SnakyHash
 
-[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![Depfu][🔑depfui♻️]][🔑depfu] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi♻️]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti♻️]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL]
+[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi♻️]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti♻️]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL]
 
 ---
 
@@ -489,8 +489,6 @@ or one of the others at the head of this README.
 [📜wiki-img]: https://img.shields.io/badge/wiki-examples-943CD2.svg?style=for-the-badge&logo=Wiki&logoColor=white
 [👽dl-rank]: https://rubygems.org/gems/snaky_hash
 [👽dl-ranki]: https://img.shields.io/gem/rd/snaky_hash.svg
-[👽oss-help]: https://www.codetriage.com/oauth-xx/snaky_hash
-[👽oss-helpi]: https://www.codetriage.com/oauth-xx/snaky_hash/badges/users.svg
 [👽version]: https://rubygems.org/gems/snaky_hash
 [👽versioni]: https://img.shields.io/gem/v/snaky_hash.svg
 [🔑qlty-mnt]: https://qlty.sh/gh/oauth-xx/projects/snaky_hash
@@ -501,8 +499,6 @@ or one of the others at the head of this README.
 [🔑codecovi♻️]: https://codecov.io/gh/oauth-xx/snaky_hash/graph/badge.svg?token=XqaZixl4ss
 [🔑coveralls]: https://coveralls.io/github/oauth-xx/snaky_hash?branch=main
 [🔑coveralls-img]: https://coveralls.io/repos/github/oauth-xx/snaky_hash/badge.svg?branch=main
-[🔑depfu]: https://depfu.com/github/oauth-xx/snaky_hash?project_id=63073
-[🔑depfui♻️]: https://badges.depfu.com/badges/7019dcf43672ba8c0e77e7fdd1063398/count.svg
 [🖐codeQL]: https://github.com/oauth-xx/snaky_hash/security/code-scanning
 [🖐codeQL-img]: https://github.com/oauth-xx/snaky_hash/actions/workflows/codeql-analysis.yml/badge.svg
 [🚎1-an-wf]: https://github.com/oauth-xx/snaky_hash/actions/workflows/ancient.yml
