@@ -19,7 +19,7 @@ RSpec.shared_examples_for "a snaked hash" do
         hash_klass.new(base_hash)
       end
 
-      include_context "base hash"
+      include_context "with a base hash"
 
       it_behaves_like "a snaky hash instance"
     end
@@ -41,7 +41,7 @@ RSpec.shared_examples_for "a snaked hash" do
         hash_klass.new("apple" => "tart")
       end
 
-      include_context "base hash"
+      include_context "with a base hash"
 
       it_behaves_like "a snaky hash instance"
     end

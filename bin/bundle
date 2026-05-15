@@ -60,12 +60,14 @@ module_function
     Regexp.last_match(1)
   end
 
+  # rubocop:disable ThreadSafety/ClassInstanceVariable
   def bundler_requirement
     @bundler_requirement ||=
       env_var_version ||
       cli_arg_version ||
       bundler_requirement_for(lockfile_version)
   end
+  # rubocop:enable ThreadSafety/ClassInstanceVariable
 
   def bundler_requirement_for(version)
     return "#{Gem::Requirement.default}.a" unless version

@@ -5,7 +5,7 @@ RSpec.describe SnakyHash::SymbolKeyed do
     described_class.new(base_hash)
   end
 
-  include_context "base hash"
+  include_context "with a base hash"
 
   it_behaves_like "a snaky hash instance"
 

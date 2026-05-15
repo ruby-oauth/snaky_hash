@@ -4,12 +4,12 @@
 #
 # @example Using the shared context
 #   RSpec.describe MyClass do
-#     include_context "base hash"
+#     include_context "with a base hash"
 #     it "has data" do
 #       expect(base_hash["varOne"]).to eq(1)
 #     end
 #   end
-RSpec.shared_context "base hash" do
+RSpec.shared_context "with a base hash" do
   let(:base_hash) do
     bh = {
       "varOne" => 1,
