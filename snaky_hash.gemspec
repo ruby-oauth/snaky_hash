@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.name = "snaky_hash"
   spec.version = gem_version
   spec.authors = ["Peter Boling"]
-  spec.email = ["peter.boling@gmail.com", "oauth-ruby@googlegroups.com"]
+  spec.email = ["floss@galtzo.com", "oauth-ruby@googlegroups.com"]
 
   # Linux distros often package gems and securely certify them independent
   #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]
