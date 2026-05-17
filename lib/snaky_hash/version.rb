@@ -8,6 +8,7 @@ module SnakyHash
     # Current version of SnakyHash
     #
     # @return [String] the current version in semantic versioning format
-    VERSION = "2.0.3"
+    VERSION = "2.0.4"
   end
+  VERSION = Version::VERSION # Traditional Constant Location
 end

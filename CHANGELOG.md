@@ -6,10 +6,21 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [Unreleased]
 ### Added
+
+- Incident Response Plan in IRP.md
+- SnakyHash::VERSION (Traditional Constant Location)
+- kettle-dev & kettle-test dev harnesses
+
 ### Changed
+
+- Contributor Conenant updated to version 2.1
+
 ### Deprecated
 ### Removed
 ### Fixed
+
+- Specs
+
 ### Security
 
 ## [2.0.3] - 2025-05-23

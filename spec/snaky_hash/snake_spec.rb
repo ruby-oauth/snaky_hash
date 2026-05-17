@@ -7,7 +7,7 @@ RSpec.describe SnakyHash::Snake do
 
   let(:the_snaked_hash) do
     Class.new(Hashie::Mash) do
-      include described_class.new(key_type: :string)
+      include SnakyHash::Snake.new(key_type: :string)
     end
   end
 
