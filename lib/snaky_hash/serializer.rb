@@ -24,7 +24,7 @@ module SnakyHash
         base.include(ConvenienceInstanceMethods)
         # :nocov:
         # This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
-        unless base.instance_methods.include?(:transform_values)
+        unless base.method_defined?(:transform_values)
           base.include(BackportedInstanceMethods)
         end
         # :nocov:

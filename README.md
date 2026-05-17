@@ -415,7 +415,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
 
 <ul>
     <li>
-        2022, 2025 Peter H. Boling, of
+        2022, 2025-2026 Peter H. Boling, of
         <a href="https://railsbling.com">
             RailsBling.com
             <picture>
