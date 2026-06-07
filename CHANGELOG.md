@@ -28,6 +28,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Removed stale legacy CI workflows and duplicate extracted-stdlib gem
+  declarations from generated Appraisal gemfiles.
+
 ### Security
 
 ## [2.0.5] - 2026-06-07

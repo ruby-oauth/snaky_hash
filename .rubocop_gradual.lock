@@ -3,7 +3,7 @@
     [10, 5, 22, "Style/SuperArguments: Call `super` without arguments and parentheses when the signature is identical.", 1905555812],
     [21, 33, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
   ],
-  "Appraisals:123127614": [
+  "Appraisals:2042486875": [
     [12, 30, 11, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 476532049],
     [12, 64, 12, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 3823002898]
   ],
