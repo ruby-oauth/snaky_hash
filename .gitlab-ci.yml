@@ -5,6 +5,22 @@
 # Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+#stages:
+#  - test
+#sast:
+#  stage: test
+#include:
+#  - template: Security/SAST.gitlab-ci.yml
+
+default:
+  image: "ruby:${RUBY_VERSION}"
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 stages:
 - test
 sast:
@@ -15,6 +31,7 @@ include:
 variables:
   BUNDLE_INSTALL_FLAGS: "--quiet --jobs=$(nproc) --retry=3"
   BUNDLE_FROZEN: "false" # No lockfile!
+  BUNDLE_GEMFILE: Appraisal.root.gemfile
   K_SOUP_COV_DEBUG: true
   K_SOUP_COV_DO: true
   K_SOUP_COV_HARD: true
@@ -75,6 +92,7 @@ ruby-current:
 ruby-ruby3_1:
   variables:
     RUBYGEMS_VERSION: "3.6.9"
+    APPRAISAL: ruby-3-1
     BUNDLE_GEMFILE: gemfiles/vanilla.gemfile
     K_SOUP_COV_DO: false
   <<: *test_definition-legacy
@@ -85,6 +103,7 @@ ruby-ruby3_1:
 ruby-ruby3_0:
   variables:
     RUBYGEMS_VERSION: "3.5.23"
+    APPRAISAL: ruby-3-0
     BUNDLE_GEMFILE: gemfiles/vanilla.gemfile
     K_SOUP_COV_DO: false
   <<: *test_definition-legacy
@@ -95,6 +114,7 @@ ruby-ruby3_0:
 ruby-ruby2_7:
   variables:
     RUBYGEMS_VERSION: "3.4.22"
+    APPRAISAL: ruby-2-7
     BUNDLE_GEMFILE: gemfiles/vanilla.gemfile
     K_SOUP_COV_DO: false
   <<: *test_definition-legacy
