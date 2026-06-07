@@ -22,9 +22,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Refreshed project scaffolding with the current `kettle-jem` template, including
-  updated CI workflows, modular gemfiles, and development tooling floors.
-
 ### Deprecated
 
 ### Removed
@@ -32,6 +29,18 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [2.0.5] - 2026-06-07
+
+- TAG: [v2.0.5][2.0.5t]
+- COVERAGE: 100.00% -- 133/133 lines in 7 files
+- BRANCH COVERAGE: 100.00% -- 38/38 branches in 7 files
+- 92.86% documented
+
+### Changed
+
+- Refreshed project scaffolding with the current `kettle-jem` template, including
+  updated CI workflows, modular gemfiles, and development tooling floors.
 
 ## [2.0.4] - 2026-05-16
 
@@ -151,7 +160,9 @@ end
 
 - Initial release
 
-[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.4...HEAD
+[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.5...HEAD
+[2.0.5]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.4...v2.0.5
+[2.0.5t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.5
 [2.0.4]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.3...v2.0.4
 [2.0.4t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.4
 [2.0.3]: https://gitlab.com/oauth-xx/snaky_hash/-/compare/v2.0.2...v2.0.3

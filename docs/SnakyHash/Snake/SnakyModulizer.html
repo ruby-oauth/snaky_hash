@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: SnakyHash::Snake::SnakyModulizer
+  
+    &mdash; Documentation by YARD 0.9.44
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
+
+<script type="text/javascript">
+  pathId = "SnakyHash::Snake::SnakyModulizer";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../SnakyHash.html" title="SnakyHash (module)">SnakyHash</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Snake.html" title="SnakyHash::Snake (class)">Snake</a></span></span>
+     &raquo; 
+    <span class="title">SnakyModulizer</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: SnakyHash::Snake::SnakyModulizer
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/snaky_hash/snake.rb
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Internal module factory for creating key conversion functionality</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_mod-class_method" title="to_mod (class method)">.<strong>to_mod</strong>(key_type)  &#x21d2; Module </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new module with key conversion methods based on the specified key type.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+    
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="to_mod-class_method">
+  
+    .<strong>to_mod</strong>(key_type)  &#x21d2; <tt>Module</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new module with key conversion methods based on the specified key type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key_type</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the type to convert keys to (:string or :symbol)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Module</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a new module with conversion methods</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if key_type is not supported</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/snaky_hash/snake.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_mod'>to_mod</span><span class='lparen'>(</span><span class='id identifier rubyid_key_type'>key_type</span><span class='rparen'>)</span>
+  <span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_key_type'>key_type</span>
+    <span class='kw'>when</span> <span class='symbol'>:string</span> <span class='kw'>then</span>
+      <span class='comment'># Converts a key to a string if it is symbolizable, after underscoring
+</span>      <span class='comment'>#
+</span>      <span class='comment'># @note checks for to_sym instead of to_s, because nearly everything responds_to?(:to_s)
+</span>      <span class='comment'>#       so respond_to?(:to_s) isn&#39;t very useful as a test, and would result in symbolizing integers
+</span>      <span class='comment'>#       amd it also provides parity between the :symbol behavior, and the :string behavior,
+</span>      <span class='comment'>#       regarding which keys get converted for a given version of Ruby.
+</span>      <span class='comment'>#
+</span>      <span class='comment'># @param key [Object] the key to convert
+</span>      <span class='comment'># @return [String, Object] the converted key or original if not convertible
+</span>      <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:convert_key</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_underscore_string'>underscore_string</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span> <span class='rbrace'>}</span>
+    <span class='kw'>when</span> <span class='symbol'>:symbol</span> <span class='kw'>then</span>
+      <span class='comment'># Converts a key to a symbol if possible, after underscoring
+</span>      <span class='comment'>#
+</span>      <span class='comment'># @param key [Object] the key to convert
+</span>      <span class='comment'># @return [Symbol, Object] the converted key or original if not convertible
+</span>      <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:convert_key</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_underscore_string'>underscore_string</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span> <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SnakyHash: Unhandled key_type: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key_type'>key_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Converts hash values to the appropriate type when assigning
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param val [Object] the value to convert
+</span>    <span class='comment'># @param duping [Boolean] whether the value is being duplicated
+</span>    <span class='comment'># @return [Object] the converted value
+</span>    <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:convert_value</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_duping'>duping</span> <span class='op'>=</span> <span class='kw'>false</span><span class='op'>|</span> <span class='comment'>#:nodoc:
+</span>      <span class='kw'>case</span> <span class='id identifier rubyid_val'>val</span>
+      <span class='kw'>when</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span>
+        <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+      <span class='kw'>when</span> <span class='op'>::</span><span class='const'>Hash</span>
+        <span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span> <span class='kw'>if</span> <span class='id identifier rubyid_duping'>duping</span>
+        <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+      <span class='kw'>when</span> <span class='op'>::</span><span class='const'>Array</span>
+        <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_convert_value'>convert_value</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_val'>val</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Converts a string to underscore case
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param str [String, #to_s] the string to convert
+</span>    <span class='comment'># @return [String] the underscored string
+</span>    <span class='comment'># @example
+</span>    <span class='comment'>#   underscore_string(&quot;CamelCase&quot;)  #=&gt; &quot;camel_case&quot;
+</span>    <span class='comment'>#   underscore_string(&quot;API::V1&quot;)    #=&gt; &quot;api/v1&quot;
+</span>    <span class='comment'># @note This is the same as ActiveSupport&#39;s String#underscore
+</span>    <span class='id identifier rubyid_define_method'>define_method</span> <span class='symbol'>:underscore_string</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_str'>str</span><span class='op'>|</span>
+      <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='period'>.</span>
+        <span class='id identifier rubyid_tr'>tr</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span>
+        <span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span>
+        <span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>([A-Z]+)([A-Z][a-z])</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\1_\2</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span>
+        <span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>([a-z\d])([A-Z])</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\1_\2</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span>
+        <span class='id identifier rubyid_tr'>tr</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span>
+        <span class='id identifier rubyid_squeeze'>squeeze</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span>
+        <span class='id identifier rubyid_downcase'>downcase</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sun Jun  7 00:08:23 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.44 (ruby-4.0.5).
+</div>
+
+    </div>
+  </body>
+</html>
