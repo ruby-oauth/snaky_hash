@@ -28,6 +28,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Restored `docs/CNAME` so the generated documentation site keeps its custom domain.
 - Removed stale legacy CI workflows and duplicate extracted-stdlib gem
   declarations from generated Appraisal gemfiles.
 
