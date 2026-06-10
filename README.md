@@ -1,6 +1,6 @@
 <a href="https://github.com/ruby-oauth"><img alt="ruby-oauth Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/ruby-oauth/avatar-128px.svg" width="14%" align="right"/></a>
 
-# 🐍 SnakyHash
+# 🔮 SnakyHash
 
 [![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
 
@@ -133,7 +133,7 @@ are left as-is.
 class MySerializedSnakedHash < Hashie::Mash
   include SnakyHash::Snake.new(
     key_type: :symbol, # default :string
-    serializer: true,   # default: false
+    serializer: true   # default: false
   )
 end
 
@@ -182,7 +182,7 @@ Let's say I want to really smash up my hash and make it more food-like.
 class MyExtSnakedHash < Hashie::Mash
   include SnakyHash::Snake.new(
     key_type: :symbol, # default :string
-    serializer: true,  # default: false
+    serializer: true  # default: false
   )
 end
 
@@ -659,7 +659,7 @@ Thanks for RTFM. ☺️
 | Package | snaky_hash |
 | Description | 🐍 A Hashie::Mash joint to make #snakelife better |
 | Homepage | https://github.com/ruby-oauth/snaky_hash |
-| Source | https://github.com/ruby-oauth/snaky_hash/tree/v2.0.4 |
+| Source | https://github.com/ruby-oauth/snaky_hash/tree/v2.0.5 |
 | License | `MIT` |
 | Funding | https://github.com/sponsors/pboling, https://issuehunt.io/u/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/ruby-oauth, https://patreon.com/galtzo, https://polar.sh/pboling, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/snaky_hash, https://www.buymeacoffee.com/pboling |
 <!-- kettle-jem:metadata:end -->

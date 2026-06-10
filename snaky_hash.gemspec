@@ -23,8 +23,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Peter Boling"]
   spec.email = ["floss@galtzo.com", "oauth-ruby@googlegroups.com"]
 
-  spec.summary = "🐍 A very snaky hash"
-  spec.description = "🐍 A Hashie::Mash joint to make #snakelife better"
+  spec.summary = "🔮 A very snaky hash"
+  spec.description = "🔮 A Hashie::Mash joint to make #snakelife better"
   spec.homepage = "https://github.com/ruby-oauth/snaky_hash"
   spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 2.2.0"
@@ -47,7 +47,7 @@ Gem::Specification.new do |spec|
     end
   end
 
-  spec.metadata["homepage_uri"] = "https://snaky-hash.galtzo.com"
+  spec.metadata["homepage_uri"] = "https://structuredmerge.org"
   spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
   spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
@@ -73,7 +73,7 @@ Gem::Specification.new do |spec|
     # Public certs for gem signing
     *enumerate_package_files.call("certs"),
     # Signatures
-    *enumerate_package_files.call("sig")
+    *enumerate_package_files.call("sig"),
   ]
 
   # Automatically included with gem package, no need to list again in files.
@@ -98,7 +98,7 @@ Gem::Specification.new do |spec|
     "^sig/",
     "--line-numbers",
     "--inline-source",
-    "--quiet"
+    "--quiet",
   ]
   spec.bindir = "exe"
   # Listed files are the relative paths from bindir above.
@@ -123,7 +123,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 2.1", ">= 2.1.1")      # ruby >= 2.4
+  spec.add_development_dependency("kettle-dev", "~> 2.2", ">= 2.2.3")      # ruby >= 2.4
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
@@ -136,8 +136,8 @@ Gem::Specification.new do |spec|
 
   # Testing
   spec.add_development_dependency("appraisal2", "~> 3.1", ">= 3.1.1")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.3")             # ruby >= 2.4
-  spec.add_development_dependency("turbo_tests2", "~> 3.1", ">= 3.1.1")            # ruby >= 2.4.0, default kettle-test runner
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.5")             # ruby >= 2.4
+  spec.add_development_dependency("turbo_tests2", "~> 3.1", ">= 3.1.2")            # ruby >= 2.4.0, default kettle-test runner
 
   # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
