@@ -28,11 +28,20 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+### Security
+
+## [2.0.6] - 2026-06-11
+
+- TAG: [v2.0.6][2.0.6t]
+- COVERAGE: 100.00% -- 133/133 lines in 7 files
+- BRANCH COVERAGE: 100.00% -- 38/38 branches in 7 files
+- 92.86% documented
+
+### Fixed
+
 - Restored `docs/CNAME` so the generated documentation site keeps its custom domain.
 - Removed stale legacy CI workflows and duplicate extracted-stdlib gem
   declarations from generated Appraisal gemfiles.
-
-### Security
 
 ## [2.0.5] - 2026-06-07
 
@@ -164,7 +173,9 @@ end
 
 - Initial release
 
-[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.5...HEAD
+[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.6...HEAD
+[2.0.6]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.5...v2.0.6
+[2.0.6t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.6
 [2.0.5]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.4...v2.0.5
 [2.0.5t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.5
 [2.0.4]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.3...v2.0.4
