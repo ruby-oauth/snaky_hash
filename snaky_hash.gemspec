@@ -20,8 +20,8 @@ gem_version =
 Gem::Specification.new do |spec|
   spec.name = "snaky_hash"
   spec.version = gem_version
-  spec.authors = ["Peter Boling"]
-  spec.email = ["floss@galtzo.com", "oauth-ruby@googlegroups.com"]
+  spec.authors = ["Peter H. Boling"]
+  spec.email = ["floss@galtzo.com"]
 
   spec.summary = "🔮 A very snaky hash"
   spec.description = "🔮 A Hashie::Mash joint to make #snakelife better"

@@ -657,7 +657,7 @@ Thanks for RTFM. ☺️
 | Field | Value |
 |---|---|
 | Package | snaky_hash |
-| Description | 🐍 A Hashie::Mash joint to make #snakelife better |
+| Description | 🔮 A Hashie::Mash joint to make #snakelife better |
 | Homepage | https://github.com/ruby-oauth/snaky_hash |
 | Source | https://github.com/ruby-oauth/snaky_hash/tree/v2.0.5 |
 | License | `MIT` |
