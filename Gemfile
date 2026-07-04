@@ -9,7 +9,6 @@
 source "https://gem.coop"
 
 git_source(:codeberg) { |repo_name| "https://codeberg.org/#{repo_name}" }
-git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 
 #### IMPORTANT #######################################################
@@ -81,9 +80,6 @@ eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATIN
 
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"
-
-# Security Audit
-eval_gemfile "gemfiles/modular/audit.gemfile"
 
 # Code Coverage (env-switched: KETTLE_RB_DEV=true for local paths)
 eval_gemfile "gemfiles/modular/coverage.gemfile"
