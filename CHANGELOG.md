@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Removed stale local-path `version_gem` state from the main lockfile.
+
 ### Security
 
 ## [2.0.7] - 2026-07-13
