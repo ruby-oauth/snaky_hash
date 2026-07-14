@@ -292,7 +292,7 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_to_mod'>to_mod</span><span class='lparen'>(</span><span class='id identifier rubyid_key_type'>key_type</span><span class='rparen'>)</span>
   <span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_key_type'>key_type</span>
-    <span class='kw'>when</span> <span class='symbol'>:string</span> <span class='kw'>then</span>
+    <span class='kw'>when</span> <span class='symbol'>:string</span>
       <span class='comment'># Converts a key to a string if it is symbolizable, after underscoring
 </span>      <span class='comment'>#
 </span>      <span class='comment'># @note checks for to_sym instead of to_s, because nearly everything responds_to?(:to_s)
@@ -303,7 +303,7 @@
 </span>      <span class='comment'># @param key [Object] the key to convert
 </span>      <span class='comment'># @return [String, Object] the converted key or original if not convertible
 </span>      <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:convert_key</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_underscore_string'>underscore_string</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span> <span class='rbrace'>}</span>
-    <span class='kw'>when</span> <span class='symbol'>:symbol</span> <span class='kw'>then</span>
+    <span class='kw'>when</span> <span class='symbol'>:symbol</span>
       <span class='comment'># Converts a key to a symbol if possible, after underscoring
 </span>      <span class='comment'>#
 </span>      <span class='comment'># @param key [Object] the key to convert
@@ -362,7 +362,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Jun  7 00:08:23 2026 by
+  Generated on Mon Jul 13 23:14:22 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
