@@ -1,8 +1,5 @@
 module SnakyHash
   # See the writing guide of rbs: https://github.com/ruby/rbs#guides
-  # See the writing guide of rbs: https://github.com/ruby/rbs#guides
-  # See the writing guide of rbs: https://github.com/ruby/rbs#guides
-  # See the writing guide of rbs: https://github.com/ruby/rbs#guides
   module Version
     VERSION: String
   end
