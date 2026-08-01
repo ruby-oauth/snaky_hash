@@ -5,6 +5,7 @@ ENV["RACK_ENV"] = "test"
 
 # Third Party Libraries
 require "kettle/test/rspec"
+# `kettle/test/rspec` installs harness helpers documented in spec/README.md.
 require "version_gem/ruby"
 require "version_gem/rspec"
 
