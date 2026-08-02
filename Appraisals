@@ -27,6 +27,7 @@ plugin "appraisal2-rubocop", require: "appraisal2/rubocop", optional: true
 #    - Matches what contributors and maintainers use locally for development
 #    - Broken workflow indicates that a new contributor will have a bad time
 #
+
 appraise "unlocked_deps" do
   # Seems to be an undeclared dependency of yard.
   # /opt/hostedtoolcache/Ruby/4.0.0/x64/lib/ruby/gems/4.0.0/gems/yard-0.9.38/lib/yard/parser/ruby/legacy/irb/slex.rb:13: warning: irb/notifier is found in irb, which is not part of the default gems since Ruby 4.0.0.
@@ -50,19 +51,11 @@ appraise "unlocked_deps" do
   eval_gemfile "modular/x_std_libs.gemfile"
 end
 
-# HOW TO UPDATE APPRAISALS:
-#   BUNDLE_GEMFILE=Appraisal.root.gemfile bundle
-#   BUNDLE_GEMFILE=Appraisal.root.gemfile bundle exec appraisal update
-
-# Used for head (nightly) releases of ruby, truffleruby, and jruby.
-# Split into discrete appraisals if one of them needs a dependency locked discretely.
 appraise "head" do
   eval_gemfile "modular/x_std_libs.gemfile"
   eval_gemfile "modular/runtime_heads.gemfile"
 end
 
-# Used for current releases of ruby, truffleruby, and jruby.
-# Split into discrete appraisals if one of them needs a dependency locked discretely.
 appraise "current" do
   eval_gemfile "modular/x_std_libs.gemfile"
   eval_gemfile "modular/hashie_v5.gemfile"
@@ -119,14 +112,12 @@ appraise "ruby-3-4" do
   eval_gemfile "modular/x_std_libs/r3/libs.gemfile"
 end
 
-# Only run security audit on latest Ruby version
 appraise "audit" do
   eval_gemfile "modular/x_std_libs.gemfile"
   eval_gemfile "modular/audit.gemfile"
   eval_gemfile "modular/hashie_v5.gemfile"
 end
 
-# Only run coverage on latest Ruby version
 appraise "coverage" do
   eval_gemfile "modular/coverage.gemfile"
   eval_gemfile "modular/optional.gemfile"
@@ -134,7 +125,6 @@ appraise "coverage" do
   eval_gemfile "modular/hashie_v5.gemfile"
 end
 
-# Only run linter on latest Ruby version (but, in support of oldest supported Ruby version)
 appraise "style" do
   eval_gemfile "modular/style.gemfile"
   eval_gemfile "modular/x_std_libs.gemfile"
@@ -144,6 +134,7 @@ appraise "templating" do
   eval_gemfile "modular/templating.gemfile"
   eval_gemfile "modular/x_std_libs.gemfile"
 end
+
 appraise "omnibus" do
   eval_gemfile "modular/audit.gemfile"
   eval_gemfile "modular/coverage.gemfile"
