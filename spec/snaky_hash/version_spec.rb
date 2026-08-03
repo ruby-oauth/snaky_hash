@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "anonymous_loader"
+require "snaky_hash"
 RSpec.describe SnakyHash::Version do
   it_behaves_like "a Version module", described_class
 
