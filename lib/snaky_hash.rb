@@ -37,6 +37,7 @@ end
 # Enable version introspection via VersionGem
 #
 # @api private
+
 SnakyHash::Version.class_eval do
   extend VersionGem::Basic
 end
