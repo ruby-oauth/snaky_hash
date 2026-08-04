@@ -6,7 +6,7 @@
 # kettle-jem will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
-# snaky_hash Rakefile v7.1.0 - 2026-08-03
+# snaky_hash Rakefile v7.1.0 - 2026-08-04
 # Ruby 2.3 (Safe Navigation) or higher required
 #
 # See LICENSE.md for license information.
