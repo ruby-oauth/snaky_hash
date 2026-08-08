@@ -119,6 +119,18 @@ gem install snaky_hash
 
 ## ⚙️ Configuration
 
+Choose the storage key type when including `SnakyHash::Snake`: `:string`
+stores converted keys as strings and `:symbol` stores them as symbols. Set
+`serializer: true` when the host object also needs SnakyHash’s serialization
+helpers. There is no global initializer; configuration belongs on each hash
+class that includes the module.
+
+```ruby
+class StringKeyedPayload < Hashie::Mash
+  include SnakyHash::Snake.new(key_type: :string, serializer: true)
+end
+```
+
 ## 🔧 Basic Usage
 
 ```ruby
