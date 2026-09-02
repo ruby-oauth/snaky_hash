@@ -22,12 +22,12 @@ module SnakyHash
         extended_module = Modulizer.to_extended_mod
         base.extend(extended_module)
         base.include(ConvenienceInstanceMethods)
-        # :nocov:
+        # simplecov:disable
         # This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
         unless base.method_defined?(:transform_values)
           base.include(BackportedInstanceMethods)
         end
-        # :nocov:
+        # simplecov:enable
       end
     end
 
@@ -87,7 +87,7 @@ module SnakyHash
 
     # Provides backported methods for older Ruby versions
     module BackportedInstanceMethods
-      # :nocov:
+      # simplecov:disable
       # Transforms values of a hash using the given block
       #
       # @yield [Object] block to transform each value
@@ -105,7 +105,7 @@ module SnakyHash
         end
         result
       end
-      # :nocov:
+      # simplecov:enable
     end
 
     # Provides convenient instance methods for serialization
@@ -189,11 +189,11 @@ module SnakyHash
       if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.7")
         res
       else
-        # :nocov:
+        # simplecov:disable
         # In Ruby <= 2.6 Hash#transform_values returned a new vanilla Hash,
         #   rather than a hash of the class being transformed.
         self[res]
-        # :nocov:
+        # simplecov:enable
       end
     end
 

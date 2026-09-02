@@ -288,12 +288,12 @@
   <span class='id identifier rubyid_extended_module'>extended_module</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Serializer/Modulizer.html" title="SnakyHash::Serializer::Modulizer (module)">Modulizer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_extended_mod'><span class='object_link'><a href="Serializer/Modulizer.html#to_extended_mod-class_method" title="SnakyHash::Serializer::Modulizer.to_extended_mod (method)">to_extended_mod</a></span></span>
   <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='id identifier rubyid_extended_module'>extended_module</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_include'>include</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Serializer/ConvenienceInstanceMethods.html" title="SnakyHash::Serializer::ConvenienceInstanceMethods (module)">ConvenienceInstanceMethods</a></span></span><span class='rparen'>)</span>
-  <span class='comment'># :nocov:
+  <span class='comment'># simplecov:disable
 </span>  <span class='comment'># This will be run in CI on Ruby 2.3, but we only collect coverage from current Ruby
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_method_defined?'>method_defined?</span><span class='lparen'>(</span><span class='symbol'>:transform_values</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_include'>include</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Serializer/BackportedInstanceMethods.html" title="SnakyHash::Serializer::BackportedInstanceMethods (module)">BackportedInstanceMethods</a></span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='comment'># :nocov:
+  <span class='comment'># simplecov:enable
 </span><span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -467,7 +467,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Jun  7 00:08:23 2026 by
+  Generated on Mon Jul 13 23:14:22 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

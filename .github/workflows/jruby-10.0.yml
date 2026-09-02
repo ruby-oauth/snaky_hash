@@ -1,4 +1,4 @@
-name: JRuby 9.3
+name: JRuby 10.0
 
 permissions:
   contents: read
@@ -29,19 +29,20 @@ jobs:
   test:
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
     name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
     strategy:
       matrix:
         include:
-          # jruby-9.3 (targets Ruby 2.6 compatibility)
-          - ruby: "jruby-9.3"
-            appraisal: "ruby-2-6"
+          # jruby-10.0 (targets Ruby 3.4 compatibility)
+          - ruby: "jruby-10.0"
+            appraisal: "ruby-3-4"
             exec_cmd: "kettle-test"
-            rubygems: "3.4.22"
-            bundler: "2.4.22"
+            rubygems: default
+            bundler: default
+            experimental: true
 
     steps:
       - name: Checkout
@@ -57,13 +58,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
-          bundler-cache: false
-
-      - name: Bundle install for JRuby 9.3
-        if: ${{ !env.ACT }}
-        run: |
-          bundle config set --local path "${RUNNER_TEMP}/bundle"
-          bundle install --jobs 1
+          bundler-cache: true
 
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt1

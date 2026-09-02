@@ -40,7 +40,7 @@ RSpec.describe SnakyHash::Snake do
       klass = Class.new(Hashie::Mash) do
         include SnakyHash::Snake.new(
           key_type: :symbol, # default :string
-          serializer: true,   # default: false
+          serializer: true   # default: false
         )
       end
 
@@ -86,7 +86,7 @@ RSpec.describe SnakyHash::Snake do
             dog_1: 7,
             cat_2: "feathers",
           },
-        },
+        }
       )
     end
 

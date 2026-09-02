@@ -30,6 +30,32 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
+## [2.0.7] - 2026-07-14
+
+- TAG: [v2.0.7][2.0.7t]
+- COVERAGE: 100.00% -- 133/133 lines in 7 files
+- BRANCH COVERAGE: 100.00% -- 38/38 branches in 7 files
+- 92.86% documented
+
+### Added
+
+- Added support for JRuby 10.1 and TruffleRuby 34.0.
+
+### Changed
+
+- Retemplated generated project metadata, support documentation, CI workflows,
+  binstubs, and development dependency floors with `kettle-jem` v7.0.0.
+
+### Fixed
+
+- Corrected RubyGems homepage metadata to point at the gem documentation site.
+- Corrected persisted Open Collective and repository topology metadata used by
+  future template runs.
+
+- Package configured license files in gem release file lists.
+
+- Removed stale local-path `version_gem` state from the main lockfile.
+
 ## [2.0.6] - 2026-06-11
 
 - TAG: [v2.0.6][2.0.6t]
@@ -173,7 +199,9 @@ end
 
 - Initial release
 
-[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.6...HEAD
+[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.7...HEAD
+[2.0.7]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.6...v2.0.7
+[2.0.7t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.7
 [2.0.6]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.5...v2.0.6
 [2.0.6t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.6
 [2.0.5]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.4...v2.0.5

@@ -56,7 +56,7 @@ module SnakyHash
         def to_mod(key_type)
           Module.new do
             case key_type
-            when :string then
+            when :string
               # Converts a key to a string if it is symbolizable, after underscoring
               #
               # @note checks for to_sym instead of to_s, because nearly everything responds_to?(:to_s)
@@ -67,7 +67,7 @@ module SnakyHash
               # @param key [Object] the key to convert
               # @return [String, Object] the converted key or original if not convertible
               define_method(:convert_key) { |key| key.respond_to?(:to_sym) ? underscore_string(key.to_s) : key }
-            when :symbol then
+            when :symbol
               # Converts a key to a symbol if possible, after underscoring
               #
               # @param key [Object] the key to convert
