@@ -14,11 +14,6 @@ PATH
       hashie (>= 0.1.0, < 6)
       version_gem (~> 1.1, >= 1.1.15)
 
-PATH
-  remote: /var/home/pboling/src/my/ruby-oauth/version_gem
-  specs:
-    version_gem (1.1.15)
-
 GEM
   remote: https://gem.coop/
   specs:
@@ -558,6 +553,7 @@ GEM
       rspec (>= 3.10)
       version_gem (~> 1.1, >= 1.1.15)
     unicode-display_width (2.6.0)
+    version_gem (1.1.15)
     webrick (1.9.2)
     yaml-converter (0.2.6)
       hexapdf (>= 1.8, < 2)
@@ -641,7 +637,6 @@ DEPENDENCIES
   stone_checksums (~> 1.0, >= 1.0.8)
   stringio (>= 3.0)
   turbo_tests2 (~> 3.2, >= 3.2.4)
-  version_gem!
   webrick (~> 1.9)
   yaml-converter (~> 0.2, >= 0.2.4)
   yard (~> 0.9, >= 0.9.45)
@@ -839,7 +834,7 @@ CHECKSUMS
   tty-screen (0.8.2) sha256=c090652115beae764336c28802d633f204fb84da93c6a968aa5d8e319e819b50
   turbo_tests2 (3.2.11) sha256=06053e70d0f02fcfa025aeb72e53c1aba233ed859403993ecef02d20dc76ab7c
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
-  version_gem (1.1.15)
+  version_gem (1.1.15) sha256=a73241587b29252e3567e0c818ded80730eb754d43b508f6ce4db22ca9ba27d0
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml-converter (0.2.6) sha256=f270e8bcf19a20830056c77acf3bf942545e445455f20825af6a6884384611e9
   yaml-merge (7.1.9) sha256=fab35e05ea9905494ff754363ab8173c7528e6b4e0c364ecba11cb1cf974fe25
