@@ -21,12 +21,21 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        104,
-        109,
-        114,
-        119,
-        124,
-        129
+        116,
+        121,
+        126,
+        131,
+        136,
+        141
+      ]
+    }
+  ],
+  "- ruby: \"ruby\"\nappraisal: \"current\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        41,
+        47
       ]
     }
   ],
@@ -43,11 +52,29 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        107,
-        112,
-        117,
-        122,
-        127
+        119,
+        124,
+        129,
+        134,
+        139
+      ]
+    }
+  ],
+  "config: .licenserc.yaml\nmode: \"check\"": [
+    {
+      "file": ".github/workflows/license-eye.yml",
+      "lines": [
+        49,
+        62
+      ]
+    }
+  ],
+  "exec_cmd: \"kettle-test\"\nrubygems: latest": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        44,
+        50
       ]
     }
   ],
@@ -55,11 +82,11 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        108,
-        113,
-        118,
-        123,
-        128
+        120,
+        125,
+        130,
+        135,
+        140
       ]
     }
   ]
