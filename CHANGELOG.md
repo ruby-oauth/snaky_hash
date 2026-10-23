@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.8] - 2026-10-23
+
+- TAG: [v2.0.8][2.0.8t]
+- COVERAGE: 100.00% -- 133/133 lines in 7 files
+- BRANCH COVERAGE: 100.00% -- 38/38 branches in 7 files
+- 100.00% documented
+
+### Added
+
 - kettle-jem-template-20260720-005 - README Support & Community links now
   include RubyForum.
 - kettle-jem-template-20260726-001 - Projects now include YARD lint
@@ -64,10 +83,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - other (5)
   - workflows (32)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now
@@ -109,8 +124,6 @@ Please file a bug if you notice a violation of semantic versioning.
   matching Galtzo-hosted asset exists.
 - kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
   preserving comments and trailing commas during template updates.
-
-### Security
 
 ## [2.0.7] - 2026-07-14
 
@@ -281,7 +294,9 @@ end
 
 - Initial release
 
-[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.7...HEAD
+[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.8...HEAD
+[2.0.8]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.7...v2.0.8
+[2.0.8t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.8
 [2.0.7]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.6...v2.0.7
 [2.0.7t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.7
 [2.0.6]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.5...v2.0.6
