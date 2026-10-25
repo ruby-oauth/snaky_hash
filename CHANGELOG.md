@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.9] - 2026-10-25
+
+- TAG: [v2.0.9][2.0.9t]
+- COVERAGE: 100.00% -- 133/133 lines in 7 files
+- BRANCH COVERAGE: 100.00% -- 38/38 branches in 7 files
+- 100.00% documented
+
+### Added
+
 - kettle-jem-template-20260720-001 - READMEs can now display configured
   corporate sponsor logos.
 
@@ -34,14 +53,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - documentation (1)
   - other (1)
   - workflows (1)
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [2.0.8] - 2026-10-23
 
@@ -307,7 +318,9 @@ end
 
 - Initial release
 
-[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.8...HEAD
+[Unreleased]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.9...HEAD
+[2.0.9]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.8...v2.0.9
+[2.0.9t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.9
 [2.0.8]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.7...v2.0.8
 [2.0.8t]: https://github.com/ruby-oauth/snaky_hash/releases/tag/v2.0.8
 [2.0.7]: https://github.com/ruby-oauth/snaky_hash/compare/v2.0.6...v2.0.7
