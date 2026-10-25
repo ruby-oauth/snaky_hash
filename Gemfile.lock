@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    snaky_hash (2.0.8)
+    snaky_hash (2.0.9)
       hashie (>= 0.1.0, < 6)
       version_gem (~> 1.1, >= 1.1.16)
 
@@ -108,7 +108,7 @@ PATH
 PATH
   remote: /var/home/pboling/src/my/ruby-oauth/version_gem
   specs:
-    version_gem (1.1.16)
+    version_gem (1.1.17)
 
 PATH
   remote: /var/home/pboling/src/my/structuredmerge/ruby/gems/ast-crispr-markdown-markly
@@ -1060,7 +1060,7 @@ CHECKSUMS
   simplecov-rcov (0.3.7) sha256=372f50bf6df6b6350b7d0c840f2f8bdabe021861a43c26877b747c9ac96139fc
   simplecov_lcov_formatter (0.9.0) sha256=4c1839bb31dcf7a8f7a6474c94ed228aa03b994e9dd5e1965e58b4121b049bed
   smorg-rb (7.1.16)
-  snaky_hash (2.0.8)
+  snaky_hash (2.0.9)
   sorbet-runtime (0.6.13594) sha256=cf26f625a84c73d0d4d151fc19cafa1a6c44ad1814f2454e545893773eddd5e3
   standard (1.57.0) sha256=4a65ea92421fbaf77fb54da91e16093cf79b335b8f62c35aaa3dd714c8592858
   standard-custom (1.0.2) sha256=424adc84179a074f1a2a309bb9cf7cd6bfdb2b6541f20c6bf9436c0ba22a652b
@@ -1092,7 +1092,7 @@ CHECKSUMS
   turbo_tests2 (4.0.0) sha256=a01c2e29eeca973946bcca8fed10366ffad34622b9fa85d4cb8ebf14f429aebd
   typescript-merge (7.1.16)
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
-  version_gem (1.1.16)
+  version_gem (1.1.17)
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml-converter (0.2.7) sha256=aa6cae4a9f41ab909c39e4185911c7c3b0a196ae33439ec721aa17631e6d1b3d
   yaml-merge (7.1.16)
