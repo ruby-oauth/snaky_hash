@@ -20,7 +20,20 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- kettle-jem-template-20260720-001 - READMEs can now display configured
+  corporate sponsor logos.
+
 ### Changed
+
+- [kc] kettle-jem/prepare: updated 16 project files:
+  - dependencies (16)
+
+- [kc] kettle-jem/template: updated 6 project files:
+  - code and tests (1)
+  - dependencies (2)
+  - documentation (1)
+  - other (1)
+  - workflows (1)
 
 ### Deprecated
 

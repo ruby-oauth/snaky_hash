@@ -18,7 +18,7 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from snaky_hash.gemspec
 gemspec
 
-gem "kettle-family", "~> 1.3", ">= 1.3.29"
+gem "kettle-family", "~> 1.3", ">= 1.3.33"
 
 # Local workspace dependency wiring for *_local.gemfile overrides
 gem "nomono", "~> 1.1", ">= 1.1.15", require: false # ruby >= 3.2.0
@@ -40,7 +40,7 @@ if direct_sibling_gems.any? &&
   # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
   # Bundler records that dependency during Gemfile evaluation, but it does not
   # activate that exact version before the immediate `require "nomono/bundler"`.
-  nomono_activation_requirements = ["~> 1.1", ">= 1.1.14"]
+  nomono_activation_requirements = ["~> 1.1", ">= 1.1.15"]
   nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
   nomono_already_activated = Gem.loaded_specs["nomono"]
   nomono_lockfile = File.expand_path("Gemfile.lock", __dir__)
@@ -77,7 +77,7 @@ if direct_sibling_gems.any? &&
 
     eval_nomono_gems(
       gems: direct_sibling_gems,
-      requirements: {"version_gem" => ["~> 1.1", ">= 1.1.15"]},
+      requirements: {"version_gem" => ["~> 1.1", ">= 1.1.16"]},
       prefix: "RUBY_OAUTH",
       path_env: "RUBY_OAUTH_DEV",
       root: ["src", "my", "ruby-oauth"]
