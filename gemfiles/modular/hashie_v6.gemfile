@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+# Ruby >= 3.0
+# We will test it against Ruby 4.0.
+gem "hashie", "~> 6.0", ">= 6.0.0"
