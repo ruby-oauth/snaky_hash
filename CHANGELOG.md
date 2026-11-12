@@ -20,6 +20,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Allow hashie v6 (`>= 0.1.0, < 7`), and test the `current` appraisal against it.
+
 ### Changed
 
 - [kc] kettle-jem/prepare: updated 10 project files:
