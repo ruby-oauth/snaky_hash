@@ -11,7 +11,7 @@ PATH
   remote: .
   specs:
     snaky_hash (2.0.9)
-      hashie (>= 0.1.0, < 6)
+      hashie (>= 0.1.0, < 7)
       version_gem (~> 1.1, >= 1.1.17)
 
 GEM
@@ -136,7 +136,7 @@ GEM
     geom2d (0.4.1)
     gitmoji-regex (2.0.15)
       version_gem (~> 1.1, >= 1.1.15)
-    hashie (5.2.0)
+    hashie (6.0.0)
       logger
     hexapdf (1.11.2)
       cmdparse (~> 3.0, >= 3.0.3)
@@ -704,7 +704,7 @@ CHECKSUMS
   gem_bench (2.0.5) sha256=0dc0fb44a5a5eb7b2f5c1c68a5b0164d72007132822c012bac3abe976b199ead
   geom2d (0.4.1) sha256=ea0998ea90c4f2752e24fe13d85a4f89bee689d151316140ebcc6369bf634ed9
   gitmoji-regex (2.0.15) sha256=c6571bffd757f95c06d84a7d2d0b3f180eca7fe576882c371cee1f1a081cd968
-  hashie (5.2.0) sha256=357a22635195c2e3911fbbc3de9a7d528843d1f42ab0aae02171048f16332d72
+  hashie (6.0.0) sha256=0896391e9fc7a259bfe02abbb1a026b3e142e2f464e10255261d50a0eda18e3e
   hexapdf (1.11.2) sha256=c69ea394cc1c4b291ee17cbf2707956ad975948db4f9cf7b9d9d3bfca87b5f1c
   io-console (0.9.5) sha256=83dd9bbf4c4680416629245b39cd4212eb5f4d9a4ea91804870c1f6b846414d5
   irb (1.19.0) sha256=55ee56acbdd6c9fe06a2e6909f46a24e5c41f45f16906bab04e8049cf46f1d27

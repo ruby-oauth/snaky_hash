@@ -61,7 +61,7 @@ end
 
 appraise "current" do
   eval_gemfile "modular/x_std_libs.gemfile"
-  eval_gemfile "modular/hashie_v5.gemfile"
+  eval_gemfile "modular/hashie_v6.gemfile"
 end
 
 appraise "dep-heads" do
