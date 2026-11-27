@@ -16,10 +16,10 @@ nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
 nomono_locked_spec = nil
 if File.file?(nomono_lockfile)
   require "bundler"
-  nomono_locked_spec = Bundler::LockfileParser.
-    new(Bundler.read_file(nomono_lockfile)).
-    specs.
-    find { |spec| spec.name == "nomono" }
+  nomono_locked_spec = Bundler::LockfileParser
+    .new(Bundler.read_file(nomono_lockfile))
+    .specs
+    .find { |spec| spec.name == "nomono" }
 end
 nomono_local_loader = if nomono_locked_spec && nomono_locked_spec.source.is_a?(Bundler::Source::Path)
   File.expand_path(
@@ -68,7 +68,7 @@ def local_gem_satisfies?(gem_name, requirements, dev_root)
 
   # Parse version from gemspec
   spec = Gem::Specification.load(gemspec_path)
-  return false unless spec && spec.version
+  return false unless spec&.version
 
   # Check if version satisfies all requirements
   requirements.all? do |req|

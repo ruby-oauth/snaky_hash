@@ -11,7 +11,7 @@
 `if ci_badges.map(&:color).all? { it == "green"}` 👇️ send money so I can do more of this. FLOSS maintenance is now my full-time job.
 
 [![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate at ko-fi.com][🖇kofi-img]][🖇kofi]
-<p><sub>Corporate sponsors: <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="24"/></a> <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="24"/></a> <a href="#-floss-funding">Become a sponsor</a></sub></p>
+<p><sub>Corporate sponsors: <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="24"/></a> <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="24"/></a> <a href="#-floss-funding">Become a sponsor</a></sub></p>
 
 <details markdown="1">
  <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
@@ -41,12 +41,12 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 ### Compatibility
 
-Compatible with MRI Ruby 2.2.0+, JRuby, and TruffleRuby.
+The gem's declared runtime compatibility floor is MRI Ruby 2.2.0+, with concordant releases of JRuby and TruffleRuby.
 CI workflows and Appraisals are generated for MRI Ruby 2.4+.
 The current MRI CI lane runs on Linux and macOS.
-This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and
-may be higher than the gem's runtime compatibility floor when legacy Rubies are
-not practical for the current toolchain.
+The test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml`.
+When it is higher than the runtime floor, older runtime-compatible Rubies are
+not covered by the generated CI or Appraisal matrix.
 
 <a href="https://github.com/kettle-dev"><img alt="kettle-dev Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/kettle-dev/avatar-128px.svg" width="14%" align="right"/></a>
 
@@ -272,11 +272,6 @@ snake.very_fine_hat # => 'cheese'
 ```
 
 </details>
-
-### 🚀 Release Instructions
-
-See [CONTRIBUTING.md][🤝contributing].
-
 ## 🦷 FLOSS Funding
 
 While ruby-oauth tools are free software and will always be, the project would benefit immensely from some funding.
@@ -288,8 +283,8 @@ Currently, [Open Collective][🖇osc] is our preferred funding platform.
 
 ### Corporate Sponsorship
 
-- <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="32"/></a> [Alpha-Omega](https://alpha-omega.dev) — backed by [Amazon Web Services](https://aws.amazon.com), [Google](https://www.google.com), [Microsoft](https://www.microsoft.com), [Anthropic](https://www.anthropic.com), [OpenAI](https://openai.com), [Citi](https://www.citigroup.com), [GitHub](https://github.com)
 - <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="32"/></a> [SerpApi](https://serpapi.com)
+- <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="32"/></a> [Alpha-Omega](https://alpha-omega.dev) — backed by [Amazon Web Services](https://aws.amazon.com), [Google](https://www.google.com), [Microsoft](https://www.microsoft.com), [Anthropic](https://www.anthropic.com), [OpenAI](https://openai.com), [Citi](https://www.citigroup.com), [GitHub](https://github.com)
 
 **If you're working in a company that's making significant use of ruby-oauth tools we'd
 appreciate it if you suggest to your company to become a ruby-oauth sponsor.**
@@ -320,10 +315,6 @@ NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day
 
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:START -->
 No sponsors yet. Be the first!
-
-### Open Collective for Donors
-
-[Bill Woika](https://opencollective.com/bill-woika) [Philipp Ebneter](https://opencollective.com/guest-e77282f7) [Grigoriy](https://opencollective.com/guest-c93e0c48) [Guest](https://opencollective.com/guest-703e7c5a)
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:END -->
 
 [kettle-readme-backers]: https://github.com/ruby-oauth/snaky_hash/blob/main/bin/kettle-readme-backers
@@ -422,6 +413,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 <summary>Copyright holders</summary>
 
 - Copyright (c) 2022, 2025-2026 Peter H. Boling
+- Copyright (c) 2026 Lucas Arantes
 
 </details>
 

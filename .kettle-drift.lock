@@ -78,6 +78,15 @@
       ]
     }
   ],
+  "out != \"\" { print > out }\n' \"$bundle\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        95,
+        124
+      ]
+    }
+  ],
   "reason: \"The gemspec supports the full Hashie compatibility range; this appraisal narrows testing to the legacy release line.\"\n- gem: hashie": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
@@ -87,6 +96,15 @@
         130,
         135,
         140
+      ]
+    }
+  ],
+  "subject=\"$(openssl x509 -in \"$file\" -noout -subject 2>/dev/null || true)\"\nif [ -n \"$subject\" ] && matches \"$subject\"; then": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        103,
+        127
       ]
     }
   ]
